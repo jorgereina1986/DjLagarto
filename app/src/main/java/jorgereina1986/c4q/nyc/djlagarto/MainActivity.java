@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "response: " + response.isSuccess());
 //                Log.d(TAG, "first: " + response.body().getResults().get(0).getTitle());
 
-                List<Result> results = response.body().get().getResults();
+                List<Result> results = response.body().get().getResults()   ;
                 load(results);
 
             }
