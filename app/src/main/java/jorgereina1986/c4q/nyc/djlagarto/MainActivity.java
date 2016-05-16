@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Track track = new Track();
                     track.setTitle(finalObject.getString("title"));
+                    track.setImageUrl(finalObject.getString("artwork_url"));
 
 
                     // adding the final object in the list

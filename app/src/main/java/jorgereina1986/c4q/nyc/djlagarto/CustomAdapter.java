@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import jorgereina1986.c4q.nyc.djlagarto.model.Track;
@@ -50,7 +52,7 @@ public class CustomAdapter extends BaseAdapter {
 
             convertView = LayoutInflater.from(context).inflate(R.layout.row, parent, false);
             holder.trackHolder = (TextView) convertView.findViewById(R.id.track_title);
-            //holder.imageHolder = (ImageView) convertView.findViewById(R.id.album_cover);
+            holder.imageHolder = (ImageView) convertView.findViewById(R.id.track_cover);
 
             convertView.setTag(holder);
         }
@@ -62,7 +64,7 @@ public class CustomAdapter extends BaseAdapter {
         holder.trackHolder.setText(track.getTitle());
 
         //setting image to row view
-        //Picasso.with(context).load(result.getArtworkUrl100()).resize(80, 80).into(holder.imageHolder);
+        Picasso.with(context).load(track.getImageUrl()).placeholder(R.mipmap.ic_launcher).into(holder.imageHolder);
 
         return convertView;
     }

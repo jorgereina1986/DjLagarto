@@ -6,6 +6,15 @@ package jorgereina1986.c4q.nyc.djlagarto.model;
 public class Track {
 
     private String title;
+    private String imageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public String getTitle() {
         return title;
