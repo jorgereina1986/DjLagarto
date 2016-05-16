@@ -12,5 +12,5 @@ import retrofit.http.Query;
 //https://api.soundcloud.com/users/1920278/tracks?client_id=abfb0d3714540e9c63a814ac3dd63ec6
 public interface SoundcloudAPI {
     @GET("/users/1920278/tracks")
-    Call<List<TrackResponse>> tracks(@Query("client_id") String user);
+    Call<List<TrackResponse>> tracks(@Query("client_id") String clientId);
 }

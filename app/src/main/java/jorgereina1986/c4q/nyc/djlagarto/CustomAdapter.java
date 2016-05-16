@@ -10,27 +10,28 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import jorgereina1986.c4q.nyc.djlagarto.model.Track;
+
 /**
  * Created by c4q-jorgereina on 12/15/15.
  */
 public class CustomAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Result> results;
-
-    public CustomAdapter(Context context, List<Result> results) {
+    private List<Track> tracks;
+    public CustomAdapter(Context context, List<Track> tracks) {
         this.context = context;
-        this.results = results;
+        this.tracks = tracks;
     }
 
     @Override
     public int getCount() {
-        return results.size();
+        return tracks.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return results.get(position);
+        return tracks.get(position);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Result result = results.get(position);
+        Track track = tracks.get(position);
         ViewHolder holder;
 
         if (convertView == null) {
@@ -48,7 +49,6 @@ public class CustomAdapter extends BaseAdapter {
             holder = new ViewHolder();
 
             convertView = LayoutInflater.from(context).inflate(R.layout.row, parent, false);
-            //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             holder.trackHolder = (TextView) convertView.findViewById(R.id.track_title);
             //holder.imageHolder = (ImageView) convertView.findViewById(R.id.album_cover);
 
@@ -59,7 +59,7 @@ public class CustomAdapter extends BaseAdapter {
         }
 
         //setting track name to row view
-        holder.trackHolder.setText(result.getTitle());
+        holder.trackHolder.setText(track.getTitle());
 
         //setting image to row view
         //Picasso.with(context).load(result.getArtworkUrl100()).resize(80, 80).into(holder.imageHolder);
