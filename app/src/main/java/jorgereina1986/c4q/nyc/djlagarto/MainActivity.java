@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private CustomAdapter adapter;
     private MediaPlayer mediaPlayer;
     private Context context;
+    private Toolbar toolbar;
+    private Toolbar toolbar2;
     //private String url = "https://api.soundcloud.com/tracks/1920278/stream";
 
 
@@ -41,8 +43,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         toolbar= (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
+        toolbar2.setBottom(20);
 
 
 
@@ -123,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     Track track = new Track();
                     track.setTitle(finalObject.getString("title"));
                     track.setImageUrl(finalObject.getString("artwork_url"));
+                    track.setTrackDuration(finalObject.getLong("duration"));
 
 
                     // adding the final object in the list
@@ -158,14 +163,14 @@ public class MainActivity extends AppCompatActivity {
                 adapter = new CustomAdapter(getApplicationContext(), result);
                 mlistview.setAdapter(adapter);
 
-//                lvMovies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //                    @Override
 //                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                        Movie movieModel = result.get(position);
-//                        Intent intent = new Intent(getApplicationContext(), DetailsActivity.class);
-//                        intent.putExtra("title", movieModel.getTitle());
-//                        startActivity(intent);
-//                        Toast.makeText(getApplicationContext(), "You clicked on "+ movieModel.getTitle(), Toast.LENGTH_SHORT).show();
+//                        Track track = resultList.get(position);
+//                        //Intent intent = new Intent(getApplicationContext(), DetailsActivity.class);
+//                        //intent.putExtra("title", movieModel.getTitle());
+//                        //startActivity(intent);
+//                        //Toast.makeText(getApplicationContext(), "You clicked on "+ movieModel.getTitle(), Toast.LENGTH_SHORT).show();
 //                    }
 //                });
             } else {

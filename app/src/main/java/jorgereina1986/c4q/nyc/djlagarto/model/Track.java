@@ -7,6 +7,15 @@ public class Track {
 
     private String title;
     private String imageUrl;
+    private long trackDuration;
+
+    public long getTrackDuration() {
+        return trackDuration;
+    }
+
+    public void setTrackDuration(long trackDuration) {
+        this.trackDuration = trackDuration;
+    }
 
     public String getImageUrl() {
         return imageUrl;

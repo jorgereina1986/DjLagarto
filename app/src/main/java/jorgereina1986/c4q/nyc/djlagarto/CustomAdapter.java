@@ -53,6 +53,7 @@ public class CustomAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.row, parent, false);
             holder.trackHolder = (TextView) convertView.findViewById(R.id.track_title);
             holder.imageHolder = (ImageView) convertView.findViewById(R.id.track_cover);
+            holder.durationHolder = (TextView) convertView.findViewById(R.id.track_duration);
 
             convertView.setTag(holder);
         }
@@ -63,6 +64,13 @@ public class CustomAdapter extends BaseAdapter {
         //setting track name to row view
         holder.trackHolder.setText(track.getTitle());
 
+        long millis = track.getTrackDuration();
+        long minutes = (millis/1000) / 60;
+        long seconds = (millis/1000) % 60;
+        String duration = minutes+":"+seconds;
+
+        holder.durationHolder.setText(duration);
+
         //setting image to row view
         Picasso.with(context).load(track.getImageUrl()).placeholder(R.mipmap.ic_launcher).into(holder.imageHolder);
 
@@ -72,5 +80,6 @@ public class CustomAdapter extends BaseAdapter {
     static class ViewHolder{
         TextView trackHolder;
         ImageView imageHolder;
+        TextView durationHolder;
     }
 }

@@ -4,17 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical"
     tools:context="jorgereina1986.c4q.nyc.djlagarto.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/toolbar_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#333"
+            app:logo="@mipmap/ic_launcher"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="DJ Lagarto" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
     <ListView
         android:id="@+id/tracks_list"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         />
+        android:layout_below="@+id/toolbar_parent" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tracks_list"
+        android:background="#333333"
+        android:theme="@style/AppTheme.PopupOverlay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/current_track_iv"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#000" />
+
+            <TextView
+                android:id="@+id/current_track_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/current_track_iv"
+                android:padding="5dp"
+                android:text="hello"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="#ccc" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+
 </RelativeLayout>
