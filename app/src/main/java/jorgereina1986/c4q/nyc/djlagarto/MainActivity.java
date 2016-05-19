@@ -1,13 +1,20 @@
 package jorgereina1986.c4q.nyc.djlagarto;
 
 import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
     private ListView mlistview;
     private List<Track> resultList;
     private CustomAdapter adapter;
-    private MediaPlayer mediaPlayer;
     private Context context;
-    private Toolbar toolbar;
-    private Toolbar toolbar2;
+    private Toolbar mToolbar;
+    private Toolbar mMediaPlayerToolbar;
+    private TextView mSelectedTrackTitle;
+    private ImageView mSelectedTrackImage;
+    private MediaPlayer mMediaPlayer;
+    private ImageView mPlayerControl;
     //private String url = "https://api.soundcloud.com/tracks/1920278/stream";
 
 
@@ -43,10 +53,40 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-         toolbar= (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar2 = (Toolbar) findViewById(R.id.toolbar2);
-        toolbar2.setBottom(20);
+
+        // Media Player setup
+        mMediaPlayer = new MediaPlayer();
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                togglePlayPause();
+            }
+        });
+
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mPlayerControl.setImageResource(R.drawable.ic_play_circle_outline_white_18dp);
+            }
+        });
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        mMediaPlayerToolbar = (Toolbar) findViewById(R.id.toolbar2);
+        mSelectedTrackTitle = (TextView)findViewById(R.id.current_track_tv);
+        mSelectedTrackImage = (ImageView)findViewById(R.id.current_track_iv);
+        mPlayerControl = (ImageView) findViewById(R.id.player_control_iv);
+
+        // Play/Pause Button
+        mPlayerControl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglePlayPause();
+            }
+        });
+
 
 
 
@@ -55,39 +95,22 @@ public class MainActivity extends AppCompatActivity {
 
         new MovieTask().execute("https://api.soundcloud.com/users/1920278/tracks?client_id=abfb0d3714540e9c63a814ac3dd63ec6");
 
-//        retrofitConnection();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
-//    public void retrofitConnection(){
-//
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl("https://api.soundcloud.com")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        SoundcloudAPI soundcloudApi = retrofit.create(SoundcloudAPI.class);
-//
-//        final Call<List<TrackResponse>> call = soundcloudApi.tracks(CLIENT_ID);
-//        call.enqueue(new Callback<List<TrackResponse>>() {
-//            @Override
-//            public void onResponse(Response<List<TrackResponse>> response, Retrofit retrofit) {
-//                //Log.d(TAG, "response: " + response.isSuccess());
-//
-//                List<Track> tracks = response.body().get(0).getTracks();
-//                Log.d(TAG, "first: " + tracks.toString());
-//
-////                load(tracks);
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Throwable t) {
-//                Log.e(TAG, "error: " + t);
-//            }
-//        });
-//
-//    }
+        if (mMediaPlayer != null) {
+            if (mMediaPlayer.isPlaying()) {
+                mMediaPlayer.stop();
+            }
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
+
+    }
+
 
     private void load(List<Track> tracks) {
         resultList.clear();
@@ -128,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     track.setTitle(finalObject.getString("title"));
                     track.setImageUrl(finalObject.getString("artwork_url"));
                     track.setTrackDuration(finalObject.getLong("duration"));
+                    track.setStreamUrl(finalObject.getString("stream_url"));
 
 
                     // adding the final object in the list
@@ -163,19 +187,53 @@ public class MainActivity extends AppCompatActivity {
                 adapter = new CustomAdapter(getApplicationContext(), result);
                 mlistview.setAdapter(adapter);
 
-//                mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                        Track track = resultList.get(position);
-//                        //Intent intent = new Intent(getApplicationContext(), DetailsActivity.class);
-//                        //intent.putExtra("title", movieModel.getTitle());
-//                        //startActivity(intent);
-//                        //Toast.makeText(getApplicationContext(), "You clicked on "+ movieModel.getTitle(), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+                mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Track track = result.get(position);
+
+                        // Loading info to Media Player
+                        mSelectedTrackTitle.setText(track.getTitle());
+                        Picasso.with(context).load(track.getImageUrl()).into(mSelectedTrackImage);
+                        Toast.makeText(getApplicationContext(), "You clicked on "+ track.getStreamUrl(), Toast.LENGTH_SHORT).show();
+
+                        if (mMediaPlayer.isPlaying()) {
+                            mMediaPlayer.stop();
+                            mMediaPlayer.reset();
+                            mMediaPlayer.start();
+                        }
+
+//                        try {
+//                            mMediaPlayer.setDataSource(track.getStreamUrl());
+//                            mMediaPlayer.prepareAsync();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+                        try {
+                            mMediaPlayer.setDataSource(track.getStreamUrl()+"?client_id="+CLIENT_ID);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            mMediaPlayer.prepareAsync();
+                        } catch (IllegalStateException e) {
+                            Toast.makeText(context, e.toString(),Toast.LENGTH_SHORT);
+                        }
+                    }
+                });
             } else {
                 Toast.makeText(getApplicationContext(), "Not able to fetch data from server, please check url.", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    private void togglePlayPause() {
+        if (mMediaPlayer.isPlaying()) {
+            mMediaPlayer.pause();
+            mPlayerControl.setImageResource(R.drawable.ic_play_circle_outline_white_18dp);
+        } else {
+            mMediaPlayer.start();
+            mPlayerControl.setImageResource(R.drawable.ic_pause_circle_outline_white_18dp);
         }
     }
 }

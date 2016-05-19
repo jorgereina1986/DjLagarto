@@ -8,6 +8,15 @@ public class Track {
     private String title;
     private String imageUrl;
     private long trackDuration;
+    private String streamUrl;
+
+    public String getStreamUrl() {
+        return streamUrl;
+    }
+
+    public void setStreamUrl(String streamUrl) {
+        this.streamUrl = streamUrl;
+    }
 
     public long getTrackDuration() {
         return trackDuration;

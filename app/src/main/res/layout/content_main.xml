@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#333"
+            android:background="#4CAF50"
             app:logo="@mipmap/ic_launcher"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="DJ Lagarto" />
@@ -30,15 +30,17 @@
         android:id="@+id/tracks_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar_parent" />
+        android:layout_below="@+id/toolbar_parent"
+        android:background="#E8F5E9"/>
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/tracks_list"
-        android:background="#333333"
-        android:theme="@style/AppTheme.PopupOverlay">
+        android:background="#66BB6A"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -62,11 +64,12 @@
                 android:textSize="15sp" />
 
             <ImageView
+                android:id="@+id/player_control_iv"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="#ccc" />
+                android:src="@drawable/ic_play_circle_outline_white_18dp"/>
 
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
