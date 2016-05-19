@@ -35,8 +35,8 @@ import jorgereina1986.c4q.nyc.djlagarto.model.Track;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private static final String CLIENT_ID = "abfb0d3714540e9c63a814ac3dd63ec6";
-    private ListView mlistview;
+    private static final String CLIENT_ID = BuildConfig.CLIENT_ID;
+    private ListView mListView;
     private List<Track> resultList;
     private CustomAdapter adapter;
     private Context context;
@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mSelectedTrackImage;
     private MediaPlayer mMediaPlayer;
     private ImageView mPlayerControl;
-    //private String url = "https://api.soundcloud.com/tracks/1920278/stream";
 
 
     @Override
@@ -87,10 +86,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-        mlistview = (ListView) findViewById(R.id.tracks_list);
+        mListView = (ListView) findViewById(R.id.tracks_list);
         resultList = new ArrayList<>();
 
         new MovieTask().execute("https://api.soundcloud.com/users/1920278/tracks?client_id=abfb0d3714540e9c63a814ac3dd63ec6");
@@ -109,13 +105,6 @@ public class MainActivity extends AppCompatActivity {
             mMediaPlayer = null;
         }
 
-    }
-
-
-    private void load(List<Track> tracks) {
-        resultList.clear();
-        resultList.addAll(tracks);
-        adapter.notifyDataSetChanged();
     }
 
     public class MovieTask extends AsyncTask<String,Void, List<Track> > {
@@ -185,9 +174,9 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(result);
             if(result != null) {
                 adapter = new CustomAdapter(getApplicationContext(), result);
-                mlistview.setAdapter(adapter);
+                mListView.setAdapter(adapter);
 
-                mlistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Track track = result.get(position);
@@ -203,26 +192,17 @@ public class MainActivity extends AppCompatActivity {
                             mMediaPlayer.start();
                         }
 
-//                        try {
-//                            mMediaPlayer.setDataSource(track.getStreamUrl());
-//                            mMediaPlayer.prepareAsync();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
                         try {
                             mMediaPlayer.setDataSource(track.getStreamUrl()+"?client_id="+CLIENT_ID);
+                            mMediaPlayer.prepareAsync();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        try {
-                            mMediaPlayer.prepareAsync();
-                        } catch (IllegalStateException e) {
-                            Toast.makeText(context, e.toString(),Toast.LENGTH_SHORT);
-                        }
+
                     }
                 });
             } else {
-                Toast.makeText(getApplicationContext(), "Not able to fetch data from server, please check url.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Not able to fetch data from server, please check url.", Toast.LENGTH_SHORT).show();
             }
         }
     }
