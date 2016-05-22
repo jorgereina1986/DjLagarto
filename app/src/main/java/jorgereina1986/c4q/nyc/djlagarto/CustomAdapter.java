@@ -21,6 +21,7 @@ public class CustomAdapter extends BaseAdapter {
 
     private Context context;
     private List<Track> tracks;
+
     public CustomAdapter(Context context, List<Track> tracks) {
         this.context = context;
         this.tracks = tracks;
@@ -56,36 +57,45 @@ public class CustomAdapter extends BaseAdapter {
             holder.durationHolder = (TextView) convertView.findViewById(R.id.track_duration);
 
             convertView.setTag(holder);
-        }
-        else {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        //setting track name to row view
+        //setting track info to row view
         holder.trackHolder.setText(track.getTitle());
-
-        long millis = track.getTrackDuration();
-        long minutes = (millis/1000) / 60;
-        long seconds = (millis/1000) % 60;
-        String duration = minutes+":"+seconds;
-
-        holder.durationHolder.setText(duration);
-
-        //setting image to row view
-        if (track.getImageUrl() == null){
-            Picasso.with(context).load("http://i81.photobucket.com/albums/j204/nyzproof333/needle.jpg").centerCrop().fit().into(holder.imageHolder);
-        }
-        else {
-            Picasso.with(context).load(track.getImageUrl()).into(holder.imageHolder);
-
-        }
+        holder.durationHolder.setText(convertTime(track.getTrackDuration()));
+        Picasso.with(context)
+                .load(track.getImageUrl())
+                .placeholder(R.drawable.placeholder_album)
+                .fit()
+                .centerCrop()
+                .into(holder.imageHolder);
 
         return convertView;
     }
 
-    static class ViewHolder{
+    static class ViewHolder {
         TextView trackHolder;
         ImageView imageHolder;
         TextView durationHolder;
     }
+
+    // converting time
+    private String convertTime(long millis) {
+        StringBuffer buf = new StringBuffer();
+
+        long hours = millis / (1000 * 60 * 60);
+        long minutes = (millis % (1000 * 60 * 60)) / (1000 * 60);
+        long seconds = ((millis % (1000 * 60 * 60)) % (1000 * 60)) / 1000;
+
+        buf
+                .append(String.format("%02d", hours))
+                .append(":")
+                .append(String.format("%02d", minutes))
+                .append(":")
+                .append(String.format("%02d", seconds));
+
+        return buf.toString();
+    }
+
 }
