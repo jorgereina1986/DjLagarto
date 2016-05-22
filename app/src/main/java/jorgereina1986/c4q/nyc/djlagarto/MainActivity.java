@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.tracks_list);
         resultList = new ArrayList<>();
 
-        new MovieTask().execute("https://api.soundcloud.com/users/1920278/tracks?client_id=abfb0d3714540e9c63a814ac3dd63ec6");
+        new MovieTask().execute("https://api.soundcloud.com/users/1920278/tracks?client_id="+CLIENT_ID);
 
     }
 
@@ -216,4 +216,5 @@ public class MainActivity extends AppCompatActivity {
             mPlayerControl.setImageResource(R.drawable.ic_pause_circle_outline_white_18dp);
         }
     }
+
 }

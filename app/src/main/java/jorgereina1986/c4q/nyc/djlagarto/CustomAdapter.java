@@ -72,7 +72,13 @@ public class CustomAdapter extends BaseAdapter {
         holder.durationHolder.setText(duration);
 
         //setting image to row view
-        Picasso.with(context).load(track.getImageUrl()).placeholder(R.mipmap.ic_launcher).into(holder.imageHolder);
+        if (track.getImageUrl() == null){
+            Picasso.with(context).load("http://i81.photobucket.com/albums/j204/nyzproof333/needle.jpg").centerCrop().fit().into(holder.imageHolder);
+        }
+        else {
+            Picasso.with(context).load(track.getImageUrl()).into(holder.imageHolder);
+
+        }
 
         return convertView;
     }

@@ -33,6 +33,11 @@
         android:layout_below="@+id/toolbar_parent"
         android:background="#E8F5E9"/>
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/player_container"
+        android:layout_above="@+id/toolbar2"/>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar2"
