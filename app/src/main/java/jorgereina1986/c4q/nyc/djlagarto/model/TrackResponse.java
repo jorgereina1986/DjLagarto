@@ -1,4 +1,4 @@
-package jorgereina1986.c4q.nyc.djlagarto;
+package jorgereina1986.c4q.nyc.djlagarto.model;
 
 import java.util.List;
 
