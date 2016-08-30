@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import jorgereina1986.c4q.nyc.djlagarto.model.Track;
+import jorgereina1986.c4q.nyc.djlagarto.model.TrackResponse;
 
 /**
  * Created by c4q-jorgereina on 12/15/15.
@@ -20,9 +20,9 @@ import jorgereina1986.c4q.nyc.djlagarto.model.Track;
 public class CustomAdapter extends BaseAdapter {
 
     private Context context;
-    private List<Track> tracks;
+    private List<TrackResponse> tracks;
 
-    public CustomAdapter(Context context, List<Track> tracks) {
+    public CustomAdapter(Context context, List<TrackResponse> tracks) {
         this.context = context;
         this.tracks = tracks;
     }
@@ -44,7 +44,8 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Track track = tracks.get(position);
+        TrackResponse track = tracks.get(position);
+
         ViewHolder holder;
 
         if (convertView == null) {
@@ -63,9 +64,9 @@ public class CustomAdapter extends BaseAdapter {
 
         //setting track info to row view
         holder.trackHolder.setText(track.getTitle());
-        holder.durationHolder.setText(convertTime(track.getTrackDuration()));
+        holder.durationHolder.setText(convertTime(track.getDuration()));
         Picasso.with(context)
-                .load(track.getImageUrl())
+                .load(track.getArtworkUrl())
                 .placeholder(R.drawable.placeholder_album)
                 .fit()
                 .centerCrop()

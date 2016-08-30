@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -31,11 +32,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jorgereina1986.c4q.nyc.djlagarto.model.Track;
+import jorgereina1986.c4q.nyc.djlagarto.model.TrackResponse;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final String CLIENT_ID = BuildConfig.CLIENT_ID;
+    private static final String BASE_URL = "https://api.soundcloud.com/";
     private ListView mListView;
     private List<Track> resultList;
     private CustomAdapter adapter;
@@ -46,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mSelectedTrackImage;
     private MediaPlayer mMediaPlayer;
     private ImageView mPlayerControl;
+    private TextView textView;
 
 
     @Override
@@ -53,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        textView = (TextView) findViewById(R.id.test);
         // Media Player setup
         mMediaPlayer = new MediaPlayer();
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -89,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.tracks_list);
         resultList = new ArrayList<>();
 
-        new MovieTask().execute("https://api.soundcloud.com/users/1920278/tracks?client_id="+CLIENT_ID);
+        networkRequest();
 
     }
 
@@ -107,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public class MovieTask extends AsyncTask<String,Void, List<Track> > {
+    public class MusicTask extends AsyncTask<String,Void, List<Track> > {
 
 
         @Override
@@ -215,6 +225,40 @@ public class MainActivity extends AppCompatActivity {
             mMediaPlayer.start();
             mPlayerControl.setImageResource(R.drawable.ic_pause_circle_outline_white_18dp);
         }
+    }
+
+    private void networkRequest(){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SoundcloudApi service = retrofit.create(SoundcloudApi.class);
+
+        Call<List<TrackResponse>> tracksCall = service.trackResponse(CLIENT_ID);
+        tracksCall.enqueue(new Callback<List<TrackResponse>>() {
+            @Override
+            public void onResponse(Call<List<TrackResponse>> call, Response<List<TrackResponse>> response) {
+
+                Log.d(TAG, "response: "+ response.body().get(1).getTitle());
+
+                textView.setText(response.body().get(1).getTitle());
+
+                List<TrackResponse> tracksList = response.body();
+
+                adapter = new CustomAdapter(getApplicationContext(), tracksList);
+                mListView.setAdapter(adapter);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<List<TrackResponse>> call, Throwable t) {
+
+                textView.setText(t+"");
+            }
+        });
     }
 
 }
