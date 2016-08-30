@@ -25,65 +25,62 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="testing..."
-        android:layout_above="@+id/tracks_list"/>
-
     <ListView
         android:id="@+id/tracks_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_parent"
+        android:layout_weight="5"
         android:background="#E8F5E9" />
 
-    <FrameLayout
-        android:id="@+id/player_container"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_above="@+id/toolbar2" />
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/player"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/tracks_list"
-        android:background="#66BB6A"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark">
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
-        <RelativeLayout
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:background="#494949"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-            <ImageView
-                android:id="@+id/current_track_iv"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="#000" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-            <TextView
-                android:id="@+id/current_track_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/current_track_iv"
-                android:padding="5dp"
-                android:text="hello"
-                android:textSize="15sp" />
+                <ImageView
+                    android:id="@+id/current_track_iv"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="#000" />
 
-            <ImageView
-                android:id="@+id/player_control_iv"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_play_circle_outline_white_18dp" />
+                <TextView
+                    android:id="@+id/current_track_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/current_track_iv"
+                    android:padding="5dp"
+                    android:text="hello"
+                    android:textSize="15sp" />
 
-        </RelativeLayout>
-    </android.support.v7.widget.Toolbar>
+                <ImageView
+                    android:id="@+id/player_control_iv"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_play_circle_outline_white_18dp" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+    </RelativeLayout>
 
 
 </LinearLayout>
