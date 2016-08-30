@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(final List<Track> result) {
             super.onPostExecute(result);
             if(result != null) {
-                adapter = new CustomAdapter(getApplicationContext(), result);
+//                adapter = new CustomAdapter(getApplicationContext(), result);
                 mListView.setAdapter(adapter);
 
                 mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
