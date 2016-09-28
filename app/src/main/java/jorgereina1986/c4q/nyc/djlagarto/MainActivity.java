@@ -50,30 +50,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Media Player setup
-        mMediaPlayer = new MediaPlayer();
-        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-
-        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                togglePlayPause();
-            }
-        });
-
-        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mPlayerControl.setImageResource(R.drawable.ic_play_circle_outline_white_18dp);
-            }
-        });
+        prepMediaPlayer();
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        mMediaPlayerToolbar = (Toolbar) findViewById(R.id.toolbar2);
-        mSelectedTrackTitle = (TextView) findViewById(R.id.current_track_tv);
-        mSelectedTrackImage = (ImageView) findViewById(R.id.current_track_iv);
-        mPlayerControl = (ImageView) findViewById(R.id.player_control_iv);
+//        mMediaPlayerToolbar = (Toolbar) findViewById(R.id.toolbar2);
+//        mSelectedTrackTitle = (TextView) findViewById(R.id.current_track_tv);
+//        mSelectedTrackImage = (ImageView) findViewById(R.id.current_track_iv);
+//        mPlayerControl = (ImageView) findViewById(R.id.player_control_iv);
+
+
+        mSelectedTrackTitle = (TextView) findViewById(R.id.current_track_tv1);
+        mSelectedTrackImage = (ImageView) findViewById(R.id.current_track_iv1);
+        mPlayerControl = (ImageView) findViewById(R.id.player_control_iv1);
 
         // Play/Pause Button
         mPlayerControl.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +146,27 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+        });
+    }
+
+    private void prepMediaPlayer(){
+
+        // Media Player setup
+        mMediaPlayer = new MediaPlayer();
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                togglePlayPause();
+            }
+        });
+
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mPlayerControl.setImageResource(R.drawable.ic_play_circle_outline_white_18dp);
+            }
         });
     }
 

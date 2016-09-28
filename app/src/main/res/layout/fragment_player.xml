@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="jorgereina1986.c4q.nyc.djlagarto.Player"
-    android:id="@+id/player_fragment">
+    android:id="@+id/player_fragment"
+    android:background="#303030">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +13,7 @@
         android:padding="5dp">
 
         <ImageView
-            android:id="@+id/mp_"
+            android:id="@+id/current_track_iv1"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:background="#000"/>
@@ -21,19 +22,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="5dp"
+            android:layout_weight="1">
 
             <TextView
-                android:id="@+id/mp_track_title"
+                android:id="@+id/current_track_tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:text="hello"/>
 
             <SeekBar
                 android:id="@+id/seekbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/item_touch_helper_max_drag_scroll_per_frame" />
 
+
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/player_control_iv1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_play_circle_outline_white_18dp"/>
     </LinearLayout>
 </FrameLayout>
