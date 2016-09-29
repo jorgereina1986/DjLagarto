@@ -21,7 +21,17 @@
             android:background="#181b18"
             app:logo="@mipmap/ic_launcher"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="DJ Lagarto" />
+            app:title="DJ Lagarto">
+
+            <Button
+                android:id="@+id/hide_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="hide" />
+
+        </android.support.v7.widget.Toolbar>
+
 
     </android.support.design.widget.AppBarLayout>
 
@@ -31,61 +41,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_parent"
         android:layout_weight="5"
-        android:background="#ffffff" />
+        android:background="#262626" />
 
     <RelativeLayout
         android:id="@+id/player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/tracks_list"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:background="#999">
 
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar2"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="0"-->
-            <!--android:background="#494949"-->
-            <!--android:theme="@style/ThemeOverlay.AppCompat.Dark">-->
-
-            <!--<RelativeLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:padding="5dp">-->
-
-                <!--<ImageView-->
-                    <!--android:id="@+id/current_track_iv"-->
-                    <!--android:layout_width="50dp"-->
-                    <!--android:layout_height="50dp"-->
-                    <!--android:background="#000" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/current_track_tv"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_toRightOf="@+id/current_track_iv"-->
-                    <!--android:padding="5dp"-->
-                    <!--android:text="hello"-->
-                    <!--android:textSize="15sp" />-->
-
-                <!--<ImageView-->
-                    <!--android:id="@+id/player_control_iv"-->
-                    <!--android:layout_width="50dp"-->
-                    <!--android:layout_height="50dp"-->
-                    <!--android:layout_alignParentRight="true"-->
-                    <!--android:layout_centerVertical="true"-->
-                    <!--android:src="@drawable/ic_play_circle_outline_white_18dp" />-->
-
-            <!--</RelativeLayout>-->
-        <!--</android.support.v7.widget.Toolbar>-->
         <fragment
+            android:id="@+id/fragment_player"
+            android:name="jorgereina1986.c4q.nyc.djlagarto.Player"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/fragment"
-            android:name="jorgereina1986.c4q.nyc.djlagarto.Player"
             tools:layout="@layout/fragment_player" />
     </RelativeLayout>
 

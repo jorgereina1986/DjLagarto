@@ -3,12 +3,14 @@ package jorgereina1986.c4q.nyc.djlagarto;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,47 +37,30 @@ public class MainActivity extends AppCompatActivity {
     private ListView mListView;
     private List<TrackResponse> resultList;
     private CustomAdapter adapter;
-    private Context context;
     private Toolbar mToolbar;
-    private Toolbar mMediaPlayerToolbar;
     private TextView mSelectedTrackTitle;
     private ImageView mSelectedTrackImage;
     private MediaPlayer mMediaPlayer;
     private ImageView mPlayerControl;
-    private TextView textView;
+    private Button hideButton;
 
+    android.app.FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        prepMediaPlayer();
+        if (!isNetworkConnected(getApplicationContext())) {
+            Toast.makeText(getApplicationContext(),"Network error. Please make sure you are connected to the internet" , Toast.LENGTH_LONG).show();
+        }
+        else {
+            prepMediaPlayer();
+            initViews();
+            clickListeners();
+            networkRequest();
+        }
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-//        mMediaPlayerToolbar = (Toolbar) findViewById(R.id.toolbar2);
-//        mSelectedTrackTitle = (TextView) findViewById(R.id.current_track_tv);
-//        mSelectedTrackImage = (ImageView) findViewById(R.id.current_track_iv);
-//        mPlayerControl = (ImageView) findViewById(R.id.player_control_iv);
-
-
-        mSelectedTrackTitle = (TextView) findViewById(R.id.current_track_tv1);
-        mSelectedTrackImage = (ImageView) findViewById(R.id.current_track_iv1);
-        mPlayerControl = (ImageView) findViewById(R.id.player_control_iv1);
-
-        // Play/Pause Button
-        mPlayerControl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                togglePlayPause();
-            }
-        });
-
-        mListView = (ListView) findViewById(R.id.tracks_list);
-        resultList = new ArrayList<>();
-
-        networkRequest();
 
     }
 
@@ -114,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<TrackResponse>> call, Throwable t) {
 
-                Toast.makeText(getApplicationContext(), t+"", Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), t + "", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -128,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Loading info to Media Player
                 mSelectedTrackTitle.setText(track.getTitle());
-                Picasso.with(context).load(track.getArtworkUrl()).into(mSelectedTrackImage);
+                Picasso.with(getApplicationContext()).load(track.getArtworkUrl()).into(mSelectedTrackImage);
                 Toast.makeText(getApplicationContext(), "You clicked on " + track.getStreamUrl(), Toast.LENGTH_SHORT).show();
 
                 if (mMediaPlayer.isPlaying()) {
@@ -142,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                     mMediaPlayer.prepareAsync();
                 } catch (IOException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -149,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void prepMediaPlayer(){
+    private void prepMediaPlayer() {
 
         // Media Player setup
         mMediaPlayer = new MediaPlayer();
@@ -170,5 +156,44 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void initViews() {
+
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        mSelectedTrackTitle = (TextView) findViewById(R.id.current_track_tv1);
+        mSelectedTrackImage = (ImageView) findViewById(R.id.current_track_iv1);
+        mPlayerControl = (ImageView) findViewById(R.id.player_control_iv1);
+        mListView = (ListView) findViewById(R.id.tracks_list);
+        resultList = new ArrayList<>();
+        hideButton = (Button) findViewById(R.id.hide_button);
+
+    }
+
+    private void clickListeners() {
+
+        //hide media player fragment
+        hideButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+//                View frag = findViewById(R.id.fragment_player);
+//                frag.setVisibility(View.VISIBLE);
+            }
+        });
+
+        // Play/Pause Button
+        mPlayerControl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglePlayPause();
+            }
+        });
+
+    }
+
+    public boolean isNetworkConnected(final Context context) {
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
+    }
 
 }
