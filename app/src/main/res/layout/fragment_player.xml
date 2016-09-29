@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="jorgereina1986.c4q.nyc.djlagarto.Player"
     android:id="@+id/player_fragment"
-    android:background="#303030">
+    android:background="#1a1a1a">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,14 +23,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="5dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical">
 
             <TextView
                 android:id="@+id/current_track_tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="hello"/>
+                android:text="hello"
+                android:ellipsize="marquee"
+                android:scrollHorizontally="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:textColor="#fff"
+                android:singleLine="true"/>
 
             <SeekBar
                 android:id="@+id/seekbar"
