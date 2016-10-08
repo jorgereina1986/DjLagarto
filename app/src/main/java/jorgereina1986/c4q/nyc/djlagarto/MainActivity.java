@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private MediaPlayer mMediaPlayer;
     private ImageView mPlayerControl;
 //    private Button hideButton;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,10 +124,11 @@ public class MainActivity extends AppCompatActivity {
                     mMediaPlayer.prepareAsync();}
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
+                    Log.e(TAG, "Error: " + e, e);
 
                 } catch (IllegalStateException e){
-                    Toast.makeText(getApplicationContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                    Log.e(TAG, "Error: " + e , e);
                 }
 
             }
