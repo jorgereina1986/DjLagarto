@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
     private void togglePlayPause() {
         if (mMediaPlayer.isPlaying()) {
             mMediaPlayer.pause();
-            mPlayerControl.setImageResource(R.drawable.ic_play_circle_outline_white_18dp);
+            mPlayerControl.setImageResource(R.drawable.ic_play_arrow_black_24dp);
         } else {
             mMediaPlayer.start();
-            mPlayerControl.setImageResource(R.drawable.ic_pause_circle_outline_white_18dp);
+            mPlayerControl.setImageResource(R.drawable.ic_pause_black_24dp);
         }
     }
 
@@ -115,13 +115,11 @@ public class MainActivity extends AppCompatActivity {
                     mMediaPlayer.stop();
                     mMediaPlayer.reset();
                     mMediaPlayer.start();
-
                 }
 
                 try {
-                    if (!mMediaPlayer.isPlaying()){
                     mMediaPlayer.setDataSource(track.getStreamUrl() + "?client_id=" + CLIENT_ID);
-                    mMediaPlayer.prepareAsync();}
+                    mMediaPlayer.prepareAsync();
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e(TAG, "Error: " + e, e);
@@ -152,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                mPlayerControl.setImageResource(R.drawable.ic_play_circle_outline_white_18dp);
+                mPlayerControl.setImageResource(R.drawable.ic_play_arrow_black_24dp);
             }
         });
     }

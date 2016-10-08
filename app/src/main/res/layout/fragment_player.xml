@@ -53,6 +53,8 @@
             android:layout_height="50dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_play_circle_outline_white_18dp"/>
+            android:src="@drawable/ic_play_arrow_black_24dp"
+            android:adjustViewBounds="false"
+            android:tint="@color/colorAccent"/>
     </LinearLayout>
 </FrameLayout>
