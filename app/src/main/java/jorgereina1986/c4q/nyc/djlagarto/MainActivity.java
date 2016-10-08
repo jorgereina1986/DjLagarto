@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -42,25 +41,21 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mSelectedTrackImage;
     private MediaPlayer mMediaPlayer;
     private ImageView mPlayerControl;
-    private Button hideButton;
-
-    android.app.FragmentManager fragmentManager;
-
+//    private Button hideButton;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         if (!isNetworkConnected(getApplicationContext())) {
-            Toast.makeText(getApplicationContext(),"Network error. Please make sure you are connected to the internet" , Toast.LENGTH_LONG).show();
-        }
-        else {
+            Toast.makeText(getApplicationContext(), "Network error. Please make sure you are connected to the internet", Toast.LENGTH_LONG).show();
+        } else {
             prepMediaPlayer();
             initViews();
             clickListeners();
             networkRequest();
         }
-
 
     }
 
@@ -116,17 +111,22 @@ public class MainActivity extends AppCompatActivity {
                 Picasso.with(getApplicationContext()).load(track.getArtworkUrl()).into(mSelectedTrackImage);
                 Toast.makeText(getApplicationContext(), "You clicked on " + track.getStreamUrl(), Toast.LENGTH_SHORT).show();
 
-                if (mMediaPlayer.isPlaying()) {
+                if (mMediaPlayer.isPlaying() && mMediaPlayer != null) {
                     mMediaPlayer.stop();
                     mMediaPlayer.reset();
                     mMediaPlayer.start();
+
                 }
 
                 try {
+                    if (!mMediaPlayer.isPlaying()){
                     mMediaPlayer.setDataSource(track.getStreamUrl() + "?client_id=" + CLIENT_ID);
-                    mMediaPlayer.prepareAsync();
+                    mMediaPlayer.prepareAsync();}
                 } catch (IOException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
+
+                } catch (IllegalStateException e){
                     Toast.makeText(getApplicationContext(), "Error: " + e, Toast.LENGTH_SHORT).show();
                 }
 
@@ -165,21 +165,21 @@ public class MainActivity extends AppCompatActivity {
         mPlayerControl = (ImageView) findViewById(R.id.player_control_iv1);
         mListView = (ListView) findViewById(R.id.tracks_list);
         resultList = new ArrayList<>();
-        hideButton = (Button) findViewById(R.id.hide_button);
+//        hideButton = (Button) findViewById(R.id.hide_button);
 
     }
 
     private void clickListeners() {
 
-        //hide media player fragment
-        hideButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-//                View frag = findViewById(R.id.fragment_player);
-//                frag.setVisibility(View.VISIBLE);
-            }
-        });
+//        //hide media player fragment
+//        hideButton.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+////                View frag = findViewById(R.id.fragment_player);
+////                frag.setVisibility(View.VISIBLE);
+//            }
+//        });
 
         // Play/Pause Button
         mPlayerControl.setOnClickListener(new View.OnClickListener() {
@@ -191,9 +191,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public boolean isNetworkConnected(final Context context) {
+    private boolean isNetworkConnected(final Context context) {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

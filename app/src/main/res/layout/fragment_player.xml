@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="hello"
+                android:text="Select a Track"
                 android:ellipsize="marquee"
                 android:scrollHorizontally="true"
                 android:focusable="true"

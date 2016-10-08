@@ -19,16 +19,16 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#181b18"
-            app:logo="@mipmap/ic_launcher"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="DJ Lagarto">
+            app:title="DJ Lagarto App">
 
-            <Button
-                android:id="@+id/hide_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="hide" />
+            <!--button to test hiding player-->
+            <!--<Button-->
+                <!--android:id="@+id/hide_button"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="end"-->
+                <!--android:text="hide" />-->
 
         </android.support.v7.widget.Toolbar>
 
