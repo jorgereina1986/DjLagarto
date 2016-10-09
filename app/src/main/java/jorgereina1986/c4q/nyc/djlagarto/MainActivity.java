@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 TrackResponse track = resultList.get(position);
 
                 // Loading info to Media Player
@@ -124,14 +125,18 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                     Log.e(TAG, "Error: " + e, e);
 
-                } catch (IllegalStateException e){
+                } catch (IllegalStateException e) {
                     e.printStackTrace();
-                    Log.e(TAG, "Error: " + e , e);
+                    Log.e(TAG, "Error: " + e, e);
                 }
+
 
             }
 
+
         });
+
+
     }
 
     private void prepMediaPlayer() {

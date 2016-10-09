@@ -30,7 +30,7 @@
             android:textSize="15sp"
             android:id="@+id/track_duration"
             android:text="helo"
-            android:textColor="#fff"
+            android:textColor="@color/colorAccent"
             android:layout_gravity="end"/>
 
     </LinearLayout>

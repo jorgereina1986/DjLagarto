@@ -41,7 +41,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_parent"
         android:layout_weight="5"
-        android:background="#262626" />
+        android:background="#262626"
+        android:listSelector="#80000000"
+        android:choiceMode="singleChoice"/>
 
     <RelativeLayout
         android:id="@+id/player"
