@@ -111,11 +111,12 @@ public class MainActivity extends AppCompatActivity {
                 Picasso.with(getApplicationContext()).load(track.getArtworkUrl()).into(mSelectedTrackImage);
                 Toast.makeText(getApplicationContext(), "You clicked on " + track.getStreamUrl(), Toast.LENGTH_SHORT).show();
 
-                if (mMediaPlayer.isPlaying() && mMediaPlayer != null) {
+                if (mMediaPlayer.isPlaying() && mMediaPlayer != null || !mMediaPlayer.isPlaying()) {
                     mMediaPlayer.stop();
                     mMediaPlayer.reset();
                     mMediaPlayer.start();
                 }
+
 
                 try {
                     mMediaPlayer.setDataSource(track.getStreamUrl() + "?client_id=" + CLIENT_ID);
