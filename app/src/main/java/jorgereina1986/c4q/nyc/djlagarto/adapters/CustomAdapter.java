@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import jorgereina1986.c4q.nyc.djlagarto.R;
-import jorgereina1986.c4q.nyc.djlagarto.model.TrackResponse;
+import jorgereina1986.c4q.nyc.djlagarto.model.tracks.TrackResponse;
 
 /**
  * Created by c4q-jorgereina on 12/15/15.

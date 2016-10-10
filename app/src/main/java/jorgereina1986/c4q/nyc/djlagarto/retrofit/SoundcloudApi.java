@@ -2,7 +2,7 @@ package jorgereina1986.c4q.nyc.djlagarto.retrofit;
 
 import java.util.List;
 
-import jorgereina1986.c4q.nyc.djlagarto.model.TrackResponse;
+import jorgereina1986.c4q.nyc.djlagarto.model.tracks.TrackResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

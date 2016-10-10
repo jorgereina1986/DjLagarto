@@ -25,7 +25,7 @@ import jorgereina1986.c4q.nyc.djlagarto.BuildConfig;
 import jorgereina1986.c4q.nyc.djlagarto.R;
 import jorgereina1986.c4q.nyc.djlagarto.retrofit.SoundcloudApi;
 import jorgereina1986.c4q.nyc.djlagarto.adapters.CustomAdapter;
-import jorgereina1986.c4q.nyc.djlagarto.model.TrackResponse;
+import jorgereina1986.c4q.nyc.djlagarto.model.tracks.TrackResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
