@@ -1,0 +1,15 @@
+package jorgereina1986.c4q.nyc.djlagarto.activities;
+
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import jorgereina1986.c4q.nyc.djlagarto.R;
+
+public class Charts extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_charts);
+    }
+}
