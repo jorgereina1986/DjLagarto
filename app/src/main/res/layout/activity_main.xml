@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="jorgereina1986.c4q.nyc.djlagarto.MainActivity">
+    tools:context="jorgereina1986.c4q.nyc.djlagarto.activities.MainActivity">
 
     <include layout="@layout/content_main" />
 

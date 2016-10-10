@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="jorgereina1986.c4q.nyc.djlagarto.MainActivity"
+    tools:context="jorgereina1986.c4q.nyc.djlagarto.activities.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <android.support.design.widget.AppBarLayout
@@ -54,7 +54,7 @@
 
         <fragment
             android:id="@+id/fragment_player"
-            android:name="jorgereina1986.c4q.nyc.djlagarto.Player"
+            android:name="jorgereina1986.c4q.nyc.djlagarto.ui.Player"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layout="@layout/fragment_player" />

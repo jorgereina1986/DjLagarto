@@ -1,4 +1,4 @@
-package jorgereina1986.c4q.nyc.djlagarto;
+package jorgereina1986.c4q.nyc.djlagarto.activities;
 
 import android.content.Context;
 import android.media.AudioManager;
@@ -21,6 +21,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import jorgereina1986.c4q.nyc.djlagarto.BuildConfig;
+import jorgereina1986.c4q.nyc.djlagarto.R;
+import jorgereina1986.c4q.nyc.djlagarto.retrofit.SoundcloudApi;
+import jorgereina1986.c4q.nyc.djlagarto.adapters.CustomAdapter;
 import jorgereina1986.c4q.nyc.djlagarto.model.TrackResponse;
 import retrofit2.Call;
 import retrofit2.Callback;

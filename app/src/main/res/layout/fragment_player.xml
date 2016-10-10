@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="jorgereina1986.c4q.nyc.djlagarto.Player"
+    tools:context="jorgereina1986.c4q.nyc.djlagarto.ui.Player"
     android:id="@+id/player_fragment"
     android:background="#1a1a1a">
 
