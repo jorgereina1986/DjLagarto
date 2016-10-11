@@ -24,7 +24,7 @@ import java.util.List;
 import jorgereina1986.c4q.nyc.djlagarto.BuildConfig;
 import jorgereina1986.c4q.nyc.djlagarto.R;
 import jorgereina1986.c4q.nyc.djlagarto.retrofit.SoundcloudApi;
-import jorgereina1986.c4q.nyc.djlagarto.adapters.CustomAdapter;
+import jorgereina1986.c4q.nyc.djlagarto.adapters.TrackAdapter;
 import jorgereina1986.c4q.nyc.djlagarto.model.tracks.TrackResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String BASE_URL = "https://api.soundcloud.com/";
     private ListView mListView;
     private List<TrackResponse> resultList;
-    private CustomAdapter adapter;
+    private TrackAdapter adapter;
     private Toolbar mToolbar;
     private TextView mSelectedTrackTitle;
     private ImageView mSelectedTrackImage;
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d(TAG, "response: " + response.body().get(1).getTitle());
                 resultList = response.body();
-                adapter = new CustomAdapter(getApplicationContext(), resultList);
+                adapter = new TrackAdapter(getApplicationContext(), resultList);
                 mListView.setAdapter(adapter);
 
                 onTrackClicked();

@@ -18,12 +18,12 @@ import jorgereina1986.c4q.nyc.djlagarto.model.tracks.TrackResponse;
 /**
  * Created by c4q-jorgereina on 12/15/15.
  */
-public class CustomAdapter extends BaseAdapter {
+public class TrackAdapter extends BaseAdapter {
 
     private Context context;
     private List<TrackResponse> tracks;
 
-    public CustomAdapter(Context context, List<TrackResponse> tracks) {
+    public TrackAdapter(Context context, List<TrackResponse> tracks) {
         this.context = context;
         this.tracks = tracks;
     }
@@ -53,7 +53,7 @@ public class CustomAdapter extends BaseAdapter {
 
             holder = new ViewHolder();
 
-            convertView = LayoutInflater.from(context).inflate(R.layout.row, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.track_row, parent, false);
             holder.trackHolder = (TextView) convertView.findViewById(R.id.track_title);
             holder.imageHolder = (ImageView) convertView.findViewById(R.id.track_cover);
             holder.durationHolder = (TextView) convertView.findViewById(R.id.track_duration);
@@ -63,7 +63,7 @@ public class CustomAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        //setting track info to row view
+        //setting track info to track_row view
         holder.trackHolder.setText(track.getTitle());
         holder.durationHolder.setText(convertTime(track.getDuration()));
         Picasso.with(context)

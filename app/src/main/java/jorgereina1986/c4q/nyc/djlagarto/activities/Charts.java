@@ -39,7 +39,7 @@ public class Charts extends AppCompatActivity {
             @Override
             public void onResponse(Call<ChartResponse> call, Response<ChartResponse> response) {
 
-                Log.d(TAG, response.body().getFeed().getEntry().get(0).getImArtist().getLabel());
+                Log.d(TAG, response.body().getFeed().getEntry()+"");
             }
 
             @Override
