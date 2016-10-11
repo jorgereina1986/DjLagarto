@@ -11,68 +11,68 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="jorgereina1986.c4q.nyc.djlagarto.activities.Charts">
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:paddingBottom="20dp">-->
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp">
 
-    <!--<ImageView-->
-    <!--android:layout_width="150dp"-->
-    <!--android:layout_height="150dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:background="#000"-->
-    <!--android:padding="10dp"-->
-    <!--android:src="@mipmap/ic_launcher" />-->
+    <ImageView
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_weight="1"
+    android:background="#000"
+    android:padding="10dp"
+    android:src="@mipmap/ic_launcher" />
 
-    <!--<ImageView-->
-    <!--android:layout_width="150dp"-->
-    <!--android:layout_height="150dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:background="#000"-->
-    <!--android:src="@mipmap/ic_launcher" />-->
+    <ImageView
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_weight="1"
+    android:background="#000"
+    android:src="@mipmap/ic_launcher" />
 
-    <!--</LinearLayout>-->
+    </LinearLayout>
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:paddingBottom="20dp">-->
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp">
 
-    <!--<ImageView-->
-    <!--android:layout_width="150dp"-->
-    <!--android:layout_height="150dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:background="#000"-->
-    <!--android:src="@mipmap/ic_launcher"/>-->
+    <ImageView
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_weight="1"
+    android:background="#000"
+    android:src="@mipmap/ic_launcher"/>
 
-    <!--<ImageView-->
-    <!--android:layout_width="150dp"-->
-    <!--android:layout_height="150dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:background="#000"-->
-    <!--android:src="@mipmap/ic_launcher"/>-->
+    <ImageView
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_weight="1"
+    android:background="#000"
+    android:src="@mipmap/ic_launcher"/>
 
-    <!--</LinearLayout>-->
+    </LinearLayout>
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content">-->
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <!--<ImageView-->
-    <!--android:layout_width="150dp"-->
-    <!--android:layout_height="150dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:background="#000"-->
-    <!--android:src="@mipmap/ic_launcher"/>-->
+    <ImageView
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_weight="1"
+    android:background="#000"
+    android:src="@mipmap/ic_launcher"/>
 
-    <!--<ImageView-->
-    <!--android:layout_width="150dp"-->
-    <!--android:layout_height="150dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:background="#000"-->
-    <!--android:src="@mipmap/ic_launcher"/>-->
+    <ImageView
+    android:layout_width="150dp"
+    android:layout_height="150dp"
+    android:layout_weight="1"
+    android:background="#000"
+    android:src="@mipmap/ic_launcher"/>
 
-    <!--</LinearLayout>-->
+    </LinearLayout>
 
     <ListView
         android:id="@+id/chart_lv"
