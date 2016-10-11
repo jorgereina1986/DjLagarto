@@ -17,8 +17,13 @@ import jorgereina1986.c4q.nyc.djlagarto.model.chart.Entry;
 
 public class ChartAdapter extends BaseAdapter {
 
-    Context context;
-    List<Entry> entryList;
+    private Context context;
+    private List<Entry> entryList;
+
+    public ChartAdapter(Context context, List<Entry> entryList) {
+        this.context = context;
+        this.entryList = entryList;
+    }
 
     @Override
     public int getCount() {
@@ -32,36 +37,39 @@ public class ChartAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Entry entry = new Entry();
+        Entry entry = entryList.get(position);
 
-        ViewHolder vh;
+        ViewHolder holder;
 
-        if (convertView == null){
+        if (convertView == null) {
 
-            vh = new ViewHolder();
+            holder = new ViewHolder();
 
             convertView = LayoutInflater.from(context).inflate(R.layout.chart_row, parent, false);
-            vh.albumCover = (ImageView) convertView.findViewById(R.id.album_iv);
-            vh.titleHolder = (TextView) convertView.findViewById(R.id.title_tv);
-            vh.artistHolder = (TextView) convertView.findViewById(R.id.artist_tv);
+            holder.albumCover = (ImageView) convertView.findViewById(R.id.album_iv);
+            holder.titleHolder = (TextView) convertView.findViewById(R.id.title_tv);
+            holder.artistHolder = (TextView) convertView.findViewById(R.id.artist_tv);
 
-        }
-        else {
-            vh = (ViewHolder) convertView.getTag();
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
-        vh.titleHolder.setText(entry.getImName().getLabel());
-        vh.artistHolder.setText(entry.getImArtist().getLabel());
-        Picasso.with(context).load(entry.getImImage().get(0).getLabel()).into(vh.albumCover);
+        holder.titleHolder.setText(entry.getImName().getLabel());
+        holder.artistHolder.setText(entry.getImArtist().getLabel());
+        Picasso.with(context)
+                .load(entry.getImImage().get(0).getLabel())
+                .into(holder.albumCover);
+
         return convertView;
     }
 
-    static class ViewHolder{
+    static class ViewHolder {
 
         TextView titleHolder;
         TextView artistHolder;
