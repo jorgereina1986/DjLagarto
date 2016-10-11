@@ -23,6 +23,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 pageFragment = new SoundcloudFragment();
                 break;
+            default:
+                return null;
 
         }
 
@@ -30,7 +32,20 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position){
+            case 0:
+                return "HOT";
+            case 1:
+                return "MIXES";
+            default:
+                return null;
+        }
+    }
+
+    @Override
     public int getCount() {
         return 2;
     }
+
 }
