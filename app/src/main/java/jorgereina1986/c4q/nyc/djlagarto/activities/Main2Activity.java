@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 
 import jorgereina1986.c4q.nyc.djlagarto.R;
@@ -15,17 +16,17 @@ public class Main2Activity extends AppCompatActivity {
     private ViewPager viewPager;
     private PagerAdapter adapter;
     private TabLayout tabLayout;
+    private ActionBar actionBar;
 
-    //TODO add logic to Tabs
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        bindVews();
+        bindViews();
 
     }
 
-    private void bindVews() {
+    private void bindViews() {
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         viewPager = (ViewPager) findViewById(R.id.view_pager);
@@ -34,6 +35,9 @@ public class Main2Activity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("News"));
         tabLayout.addTab(tabLayout.newTab().setText("Mixes"));
         tabLayout.setupWithViewPager(viewPager);
+        actionBar = getSupportActionBar();
+        actionBar.setTitle("Home");
+        actionBar.
 
     }
 }
