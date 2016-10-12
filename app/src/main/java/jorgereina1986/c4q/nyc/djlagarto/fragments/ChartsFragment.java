@@ -33,9 +33,7 @@ public class ChartsFragment extends Fragment {
     private List<Entry> entryList;
     private Context context;
 //    @BindView(R.id.chart_list_view)
-    ListView chartLv;
-
-
+    private ListView chartLv;
 
     @Nullable
     @Override

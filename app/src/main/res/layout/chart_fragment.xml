@@ -16,14 +16,4 @@
         android:listSelector="#80000000"
         android:choiceMode="singleChoice"/>
 
-    <RelativeLayout
-    android:id="@+id/player"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignBottom="@+id/tracks_list"
-    android:background="#999">
-
-    
-</RelativeLayout>
-
 </LinearLayout>
