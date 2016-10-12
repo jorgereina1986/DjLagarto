@@ -41,8 +41,6 @@ public class ChartsFragment extends Fragment {
         chartLv = (ListView) rootView.findViewById(R.id.chart_list_view);
         entryList = new ArrayList<>();
         return rootView;
-
-
     }
 
     @Override

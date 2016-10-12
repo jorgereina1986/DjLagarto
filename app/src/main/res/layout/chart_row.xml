@@ -5,6 +5,12 @@
     android:orientation="horizontal"
     android:padding="5dp">
 
+    <TextView
+        android:id="@+id/rank_num_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="#1"/>
+
     <ImageView
         android:id="@+id/album_iv"
         android:layout_width="35dp"
