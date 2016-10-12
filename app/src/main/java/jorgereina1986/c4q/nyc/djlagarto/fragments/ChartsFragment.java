@@ -1,6 +1,5 @@
 package jorgereina1986.c4q.nyc.djlagarto.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -31,8 +31,8 @@ public class ChartsFragment extends Fragment {
 
     private ChartAdapter chartAdapter;
     private List<Entry> entryList;
-    private Context context;
     private ListView chartLv;
+    PlayerCommunicator playerCommunicator;
 
     @Nullable
     @Override
@@ -49,7 +49,7 @@ public class ChartsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
+        playerCommunicator = (PlayerCommunicator) getActivity();
         networkRequest();
     }
 
@@ -72,11 +72,30 @@ public class ChartsFragment extends Fragment {
                 chartAdapter = new ChartAdapter(getContext(), entryList);
                 chartLv.setAdapter(chartAdapter);
 
+                onTrackClicked();
+
             }
 
             @Override
             public void onFailure(Call<ChartResponse> call, Throwable t) {
 
+            }
+        });
+    }
+
+    private void onTrackClicked() {
+
+        chartLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Entry entry = entryList.get(position);
+
+                String title = entry.getImName().getLabel();
+                String album = entry.getImImage().get(0).getLabel();
+                String url = entry.getLink().get(1).getAttributes().getHref();
+
+                playerCommunicator.updatePlayer(title, album, url);
             }
         });
     }

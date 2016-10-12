@@ -41,7 +41,6 @@ public class Main2Activity extends AppCompatActivity implements PlayerCommunicat
 
     @Override
     public void updatePlayer(String title, String albumCover, String trackUrl) {
-
         android.app.FragmentManager fragmentManager = getFragmentManager();
         PlayerFragment playerFragment = (PlayerFragment) fragmentManager.findFragmentById(R.id.fragment_player);
         playerFragment.updatePlayer(title, albumCover, trackUrl);

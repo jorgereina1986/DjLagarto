@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mSelectedTrackImage;
     private MediaPlayer mMediaPlayer;
     private ImageView mPlayerControl;
-//    private Button hideButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
                     mMediaPlayer.start();
                 }
 
-
                 try {
                     mMediaPlayer.setDataSource(track.getStreamUrl() + "?client_id=" + CLIENT_ID);
                     mMediaPlayer.prepareAsync();
@@ -133,13 +131,8 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                     Log.e(TAG, "Error: " + e, e);
                 }
-
-
             }
-
-
         });
-
 
     }
 
@@ -178,16 +171,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clickListeners() {
-
-//        //hide media player fragment
-//        hideButton.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-////                View frag = findViewById(R.id.fragment_player);
-////                frag.setVisibility(View.VISIBLE);
-//            }
-//        });
 
         // Play/Pause Button
         mPlayerControl.setOnClickListener(new View.OnClickListener() {

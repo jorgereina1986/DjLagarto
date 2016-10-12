@@ -4,6 +4,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,13 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
+import jorgereina1986.c4q.nyc.djlagarto.BuildConfig;
 import jorgereina1986.c4q.nyc.djlagarto.R;
-
-import static jorgereina1986.c4q.nyc.djlagarto.BuildConfig.CLIENT_ID;
 
 public class PlayerFragment extends android.app.Fragment {
 
+    private static final String TAG = "PlayerFragment";
+    private static final String CLIENT_ID = BuildConfig.CLIENT_ID;
     private TextView mSelectedTrackTitle;
     private ImageView mSelectedTrackImage;
     private MediaPlayer mMediaPlayer;
@@ -78,7 +80,6 @@ public class PlayerFragment extends android.app.Fragment {
                 togglePlayPause();
             }
         });
-
     }
 
     private void togglePlayPause() {
@@ -94,7 +95,9 @@ public class PlayerFragment extends android.app.Fragment {
     public void updatePlayer(String title, String albumCover, String trackUrl){
 
         mSelectedTrackTitle.setText(title);
+
         Picasso.with(getActivity()).load(albumCover).into(mSelectedTrackImage);
+
         if (mMediaPlayer.isPlaying() && mMediaPlayer != null || !mMediaPlayer.isPlaying()) {
             mMediaPlayer.stop();
             mMediaPlayer.reset();
@@ -107,11 +110,11 @@ public class PlayerFragment extends android.app.Fragment {
             mMediaPlayer.prepareAsync();
         } catch (IOException e) {
             e.printStackTrace();
-//            Log.e(TAG, "Error: " + e, e);
+            Log.e(TAG, "Error: " + e, e);
 
         } catch (IllegalStateException e) {
             e.printStackTrace();
-//            Log.e(TAG, "Error: " + e, e);
+            Log.e(TAG, "Error: " + e, e);
         }
 
     }

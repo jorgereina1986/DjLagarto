@@ -34,7 +34,6 @@ public class SoundcloudFragment extends android.support.v4.app.Fragment {
     private ListView mListView;
     private List<TrackResponse> resultList;
     private TrackAdapter adapter;
-//    private Toolbar mToolbar;
 
     PlayerCommunicator playerCommunicator;
 
@@ -62,30 +61,9 @@ public class SoundcloudFragment extends android.support.v4.app.Fragment {
         }
     }
 
-
     private boolean isNetworkConnected(final Context context) {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
         return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
-    }
-
-
-    private void onTrackClicked() {
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                TrackResponse track = resultList.get(position);
-
-                playerCommunicator.updatePlayer(track.getTitle(),track.getArtworkUrl(), track.getStreamUrl());
-
-
-            }
-
-
-        });
-
-
     }
 
     private void networkRequest() {
@@ -114,6 +92,19 @@ public class SoundcloudFragment extends android.support.v4.app.Fragment {
             public void onFailure(Call<List<TrackResponse>> call, Throwable t) {
 
                 Toast.makeText(getContext(), t + "", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void onTrackClicked() {
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                TrackResponse track = resultList.get(position);
+
+                playerCommunicator.updatePlayer(track.getTitle(),track.getArtworkUrl(), track.getStreamUrl());
             }
         });
     }
