@@ -9,8 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 
 import jorgereina1986.c4q.nyc.djlagarto.R;
 import jorgereina1986.c4q.nyc.djlagarto.adapters.ViewPagerAdapter;
+import jorgereina1986.c4q.nyc.djlagarto.fragments.PlayerCommunicator;
+import jorgereina1986.c4q.nyc.djlagarto.fragments.PlayerFragment;
 
-public class Main2Activity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity implements PlayerCommunicator{
 
     private static final int NUM_PAGES = 2;
     private ViewPager viewPager;
@@ -35,5 +37,14 @@ public class Main2Activity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         actionBar = getSupportActionBar();
         actionBar.setTitle("Home");
+    }
+
+    @Override
+    public void updatePlayer(String title, String albumCover, String trackUrl) {
+
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        PlayerFragment playerFragment = (PlayerFragment) fragmentManager.findFragmentById(R.id.fragment_player);
+        playerFragment.updatePlayer(title, albumCover, trackUrl);
+
     }
 }
