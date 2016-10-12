@@ -32,12 +32,8 @@ public class Main2Activity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
-        tabLayout.addTab(tabLayout.newTab().setText("News"));
-        tabLayout.addTab(tabLayout.newTab().setText("Mixes"));
         tabLayout.setupWithViewPager(viewPager);
         actionBar = getSupportActionBar();
         actionBar.setTitle("Home");
-        actionBar.
-
     }
 }

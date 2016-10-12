@@ -35,7 +35,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position){
             case 0:
-                return "HOT";
+                return "CHARTS";
             case 1:
                 return "MIXES";
             default:
