@@ -32,14 +32,12 @@ public class ChartsFragment extends Fragment {
     private ChartAdapter chartAdapter;
     private List<Entry> entryList;
     private Context context;
-//    @BindView(R.id.chart_list_view)
     private ListView chartLv;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.chart_fragment, container, false);
-//        ButterKnife.bind(this,rootView);
         chartLv = (ListView) rootView.findViewById(R.id.chart_list_view);
         entryList = new ArrayList<>();
         return rootView;
@@ -53,10 +51,6 @@ public class ChartsFragment extends Fragment {
 
 
         networkRequest();
-    }
-
-    private void initViews() {
-//        topSongsLv = (ListView) findViewById(R.id.chart_list_view);
     }
 
     private void networkRequest() {

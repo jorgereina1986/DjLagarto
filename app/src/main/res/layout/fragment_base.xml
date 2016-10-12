@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/fragment_player"
-        android:name="jorgereina1986.c4q.nyc.djlagarto.ui.Player"
+        android:name="jorgereina1986.c4q.nyc.djlagarto.fragments.PlayerFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout="@layout/fragment_player"
