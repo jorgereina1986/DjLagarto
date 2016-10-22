@@ -90,10 +90,12 @@ public class ChartsFragment extends Fragment {
                 Entry entry = entryList.get(position);
 
                 String title = entry.getImName().getLabel();
-                String album = entry.getImImage().get(0).getLabel();
+                String album = entry.getImImage().get(2).getLabel();
                 String url = entry.getLink().get(1).getAttributes().getHref();
+                String durationS = entry.getLink().get(1).getImDuration().getLabel();
+                int duration = Integer.parseInt(durationS);
 
-                playerCommunicator.updatePlayer(title, album, url);
+                playerCommunicator.updatePlayer(title, album, url, duration);
             }
         });
     }

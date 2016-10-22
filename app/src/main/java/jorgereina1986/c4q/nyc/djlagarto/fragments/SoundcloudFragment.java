@@ -104,7 +104,7 @@ public class SoundcloudFragment extends android.support.v4.app.Fragment {
 
                 TrackResponse track = resultList.get(position);
 
-                playerCommunicator.updatePlayer(track.getTitle(),track.getArtworkUrl(), track.getStreamUrl());
+                playerCommunicator.updatePlayer(track.getTitle(),track.getArtworkUrl(), track.getStreamUrl(), track.getDuration());
             }
         });
     }
