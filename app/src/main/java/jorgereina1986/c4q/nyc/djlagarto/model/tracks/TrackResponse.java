@@ -3,8 +3,6 @@ package jorgereina1986.c4q.nyc.djlagarto.model.tracks;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import jorgereina1986.c4q.nyc.djlagarto.model.User;
-
 /**
  * Created by c4q-jorgereina on 12/15/15.
  */
