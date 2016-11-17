@@ -5,14 +5,13 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 
 import jorgereina1986.c4q.nyc.djlagarto.R;
 import jorgereina1986.c4q.nyc.djlagarto.adapters.ViewPagerAdapter;
 import jorgereina1986.c4q.nyc.djlagarto.fragments.PlayerCommunicator;
 import jorgereina1986.c4q.nyc.djlagarto.fragments.PlayerFragment;
 
-public class Main2Activity extends AppCompatActivity implements PlayerCommunicator{
+public class Main2Activity extends BaseActivity implements PlayerCommunicator{
 
     private static final int NUM_PAGES = 2;
     private ViewPager viewPager;

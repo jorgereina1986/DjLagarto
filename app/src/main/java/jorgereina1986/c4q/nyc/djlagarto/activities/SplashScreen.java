@@ -3,11 +3,10 @@ package jorgereina1986.c4q.nyc.djlagarto.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 
 import jorgereina1986.c4q.nyc.djlagarto.R;
 
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreen extends BaseActivity {
 
     private static final int SPLASH_TIME_OUT = 3000;
 
