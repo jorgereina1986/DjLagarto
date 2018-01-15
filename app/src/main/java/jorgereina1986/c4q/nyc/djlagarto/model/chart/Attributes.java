@@ -9,18 +9,9 @@ public class Attributes {
     @SerializedName("title")
     @Expose
     private String title;
-    @SerializedName("rel")
-    @Expose
-    private String rel;
-    @SerializedName("type")
-    @Expose
-    private String type;
     @SerializedName("href")
     @Expose
     private String href;
-    @SerializedName("im:assetType")
-    @Expose
-    private String imAssetType;
 
     /**
      * 
@@ -43,42 +34,6 @@ public class Attributes {
     /**
      * 
      * @return
-     *     The rel
-     */
-    public String getRel() {
-        return rel;
-    }
-
-    /**
-     * 
-     * @param rel
-     *     The rel
-     */
-    public void setRel(String rel) {
-        this.rel = rel;
-    }
-
-    /**
-     * 
-     * @return
-     *     The type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * 
-     * @param type
-     *     The type
-     */
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    /**
-     * 
-     * @return
      *     The href
      */
     public String getHref() {
@@ -92,24 +47,6 @@ public class Attributes {
      */
     public void setHref(String href) {
         this.href = href;
-    }
-
-    /**
-     * 
-     * @return
-     *     The imAssetType
-     */
-    public String getImAssetType() {
-        return imAssetType;
-    }
-
-    /**
-     * 
-     * @param imAssetType
-     *     The im:assetType
-     */
-    public void setImAssetType(String imAssetType) {
-        this.imAssetType = imAssetType;
     }
 
 }
