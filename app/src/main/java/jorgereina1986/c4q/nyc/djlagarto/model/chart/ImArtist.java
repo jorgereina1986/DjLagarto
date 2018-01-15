@@ -9,9 +9,6 @@ public class ImArtist {
     @SerializedName("label")
     @Expose
     private String label;
-    @SerializedName("attributes")
-    @Expose
-    private Attributes_________ attributes;
 
     /**
      * 
@@ -29,24 +26,6 @@ public class ImArtist {
      */
     public void setLabel(String label) {
         this.label = label;
-    }
-
-    /**
-     * 
-     * @return
-     *     The attributes
-     */
-    public Attributes_________ getAttributes() {
-        return attributes;
-    }
-
-    /**
-     * 
-     * @param attributes
-     *     The attributes
-     */
-    public void setAttributes(Attributes_________ attributes) {
-        this.attributes = attributes;
     }
 
 }

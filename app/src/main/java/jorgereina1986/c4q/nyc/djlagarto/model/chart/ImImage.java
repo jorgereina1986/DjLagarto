@@ -9,9 +9,7 @@ public class ImImage {
     @SerializedName("label")
     @Expose
     private String label;
-    @SerializedName("attributes")
-    @Expose
-    private Attributes attributes;
+
 
     /**
      * 
@@ -29,24 +27,6 @@ public class ImImage {
      */
     public void setLabel(String label) {
         this.label = label;
-    }
-
-    /**
-     * 
-     * @return
-     *     The attributes
-     */
-    public Attributes getAttributes() {
-        return attributes;
-    }
-
-    /**
-     * 
-     * @param attributes
-     *     The attributes
-     */
-    public void setAttributes(Attributes attributes) {
-        this.attributes = attributes;
     }
 
 }

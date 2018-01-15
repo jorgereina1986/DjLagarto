@@ -17,7 +17,7 @@ import jorgereina1986.c4q.nyc.djlagarto.R;
 import jorgereina1986.c4q.nyc.djlagarto.adapters.ChartAdapter;
 import jorgereina1986.c4q.nyc.djlagarto.model.chart.ChartResponse;
 import jorgereina1986.c4q.nyc.djlagarto.model.chart.Entry;
-import jorgereina1986.c4q.nyc.djlagarto.retrofit.ChartsApi;
+import jorgereina1986.c4q.nyc.djlagarto.retrofit.ItunesApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -57,9 +57,9 @@ public class ChartsFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        ChartsApi service = retrofit.create(ChartsApi.class);
+        ItunesApi service = retrofit.create(ItunesApi.class);
 
-        Call<ChartResponse> chartResponseCall = service.chartResponse();
+        Call<ChartResponse> chartResponseCall = service.listCharts();
 
         chartResponseCall.enqueue(new Callback<ChartResponse>() {
             @Override

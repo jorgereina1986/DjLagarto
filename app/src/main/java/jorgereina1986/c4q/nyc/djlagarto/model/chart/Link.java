@@ -1,4 +1,3 @@
-
 package jorgereina1986.c4q.nyc.djlagarto.model.chart;
 
 import com.google.gson.annotations.Expose;
@@ -8,24 +7,45 @@ public class Link {
 
     @SerializedName("attributes")
     @Expose
-    private Attributes_ attributes;
+    private Attributes attributes;
+    @SerializedName("im:duration")
+    @Expose
+    private ImDuration imDuration;
 
     /**
-     * 
+     *
      * @return
      *     The attributes
      */
-    public Attributes_ getAttributes() {
+    public Attributes getAttributes() {
         return attributes;
     }
 
     /**
-     * 
+     *
      * @param attributes
      *     The attributes
      */
-    public void setAttributes(Attributes_ attributes) {
+    public void setAttributes(Attributes attributes) {
         this.attributes = attributes;
+    }
+
+    /**
+     *
+     * @return
+     *     The imDuration
+     */
+    public ImDuration getImDuration() {
+        return imDuration;
+    }
+
+    /**
+     *
+     * @param imDuration
+     *     The im:duration
+     */
+    public void setImDuration(ImDuration imDuration) {
+        this.imDuration = imDuration;
     }
 
 }

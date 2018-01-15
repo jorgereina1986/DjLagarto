@@ -6,26 +6,110 @@ import com.google.gson.annotations.SerializedName;
 
 public class Attributes {
 
-    @SerializedName("height")
+    @SerializedName("title")
     @Expose
-    private String height;
+    private String title;
+    @SerializedName("rel")
+    @Expose
+    private String rel;
+    @SerializedName("type")
+    @Expose
+    private String type;
+    @SerializedName("href")
+    @Expose
+    private String href;
+    @SerializedName("im:assetType")
+    @Expose
+    private String imAssetType;
 
     /**
      * 
      * @return
-     *     The height
+     *     The title
      */
-    public String getHeight() {
-        return height;
+    public String getTitle() {
+        return title;
     }
 
     /**
      * 
-     * @param height
-     *     The height
+     * @param title
+     *     The title
      */
-    public void setHeight(String height) {
-        this.height = height;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * 
+     * @return
+     *     The rel
+     */
+    public String getRel() {
+        return rel;
+    }
+
+    /**
+     * 
+     * @param rel
+     *     The rel
+     */
+    public void setRel(String rel) {
+        this.rel = rel;
+    }
+
+    /**
+     * 
+     * @return
+     *     The type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * 
+     * @param type
+     *     The type
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * 
+     * @return
+     *     The href
+     */
+    public String getHref() {
+        return href;
+    }
+
+    /**
+     * 
+     * @param href
+     *     The href
+     */
+    public void setHref(String href) {
+        this.href = href;
+    }
+
+    /**
+     * 
+     * @return
+     *     The imAssetType
+     */
+    public String getImAssetType() {
+        return imAssetType;
+    }
+
+    /**
+     * 
+     * @param imAssetType
+     *     The im:assetType
+     */
+    public void setImAssetType(String imAssetType) {
+        this.imAssetType = imAssetType;
     }
 
 }
