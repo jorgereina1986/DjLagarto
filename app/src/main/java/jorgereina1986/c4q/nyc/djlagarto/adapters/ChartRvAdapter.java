@@ -24,10 +24,12 @@ public class ChartRvAdapter extends RecyclerView.Adapter<ChartRvAdapter.ChartVie
 
     private Context context;
     private List<Entry> entryList;
+    private ListItemClickListener onClickListener;
 
-    public ChartRvAdapter(Context context, List<Entry> entryList) {
+    public ChartRvAdapter(Context context, List<Entry> entryList, ListItemClickListener listener) {
         this.context = context;
         this.entryList = entryList;
+        this.onClickListener = listener;
     }
 
     @NonNull
@@ -45,7 +47,6 @@ public class ChartRvAdapter extends RecyclerView.Adapter<ChartRvAdapter.ChartVie
         Picasso.with(context).load(entry.getImImage().get(0).getLabel()).into(holder.albumCover);
         holder.titleHolder.setText(entry.getImName().getLabel());
         holder.artistHolder.setText(entry.getImArtist().getLabel());
-
     }
 
     @Override
@@ -53,7 +54,7 @@ public class ChartRvAdapter extends RecyclerView.Adapter<ChartRvAdapter.ChartVie
         return entryList.size();
     }
 
-    public class ChartViewHolder extends RecyclerView.ViewHolder {
+    public class ChartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView titleHolder;
         private TextView artistHolder;
@@ -65,6 +66,17 @@ public class ChartRvAdapter extends RecyclerView.Adapter<ChartRvAdapter.ChartVie
             titleHolder = itemView.findViewById(R.id.title_tv);
             artistHolder = itemView.findViewById(R.id.artist_tv);
             albumCover = itemView.findViewById(R.id.album_iv);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            int clickedPosition = getAdapterPosition();
+            onClickListener.onListItemClicked(clickedPosition);
+        }
+    }
+
+    public interface ListItemClickListener {
+        void onListItemClicked(int clickedItemIndex);
     }
 }

@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,15 +23,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ChartsFragment extends Fragment {
+public class ChartsFragment extends Fragment implements ChartRvAdapter.ListItemClickListener {
 
     private static final String TAG = "jorge";
     private static final String BASE_URL = "https://itunes.apple.com";
 
-
     private RecyclerView chartRv;
     private ChartRvAdapter adapter;
-    private List<Entry> entryList =  new ArrayList<>();
+    private List<Entry> entryList = new ArrayList<>();
     private PlayerCommunicator playerCommunicator;
 
     @Nullable
@@ -40,7 +38,7 @@ public class ChartsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.chart_fragment, container, false);
         chartRv = rootView.findViewById(R.id.chart_rv);
-        adapter = new ChartRvAdapter(getContext(), entryList);
+        adapter = new ChartRvAdapter(getContext(), entryList, this);
         chartRv.setLayoutManager(new LinearLayoutManager(getContext()));
         chartRv.setAdapter(adapter);
         return rootView;
@@ -67,10 +65,8 @@ public class ChartsFragment extends Fragment {
         chartResponseCall.enqueue(new Callback<ChartResponse>() {
             @Override
             public void onResponse(Call<ChartResponse> call, Response<ChartResponse> response) {
-
                 entryList.addAll(response.body().getFeed().getEntry());
                 adapter.notifyDataSetChanged();
-//                onTrackClicked();
             }
 
             @Override
@@ -80,22 +76,16 @@ public class ChartsFragment extends Fragment {
         });
     }
 
-//    private void onTrackClicked() {
-//
-//        chartLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//                Entry entry = entryList.get(position);
-//
-//                String title = entry.getImName().getLabel();
-//                String album = entry.getImImage().get(2).getLabel();
-//                String url = entry.getLink().get(1).getAttributes().getHref();
-//                String durationS = entry.getLink().get(1).getImDuration().getLabel();
-//                int duration = Integer.parseInt(durationS);
-//
-//                playerCommunicator.updatePlayer(title, album, url, duration);
-//            }
-//        });
-    }
+    @Override
+    public void onListItemClicked(int clickedItemIndex) {
 
+        Entry entry = entryList.get(clickedItemIndex);
+        String title = entry.getImName().getLabel();
+        String album = entry.getImImage().get(2).getLabel();
+        String url = entry.getLink().get(1).getAttributes().getHref();
+        String durationS = entry.getLink().get(1).getImDuration().getLabel();
+        int duration = Integer.parseInt(durationS);
+
+        playerCommunicator.updatePlayer(title, album, url, duration);
+    }
+}
