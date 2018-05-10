@@ -20,14 +20,16 @@ import jorgereina1986.c4q.nyc.djlagarto.model.tracks.Track;
  * Created by jorgereina on 5/10/18.
  */
 
-public class TrackRvAdapter extends RecyclerView.Adapter<TrackRvAdapter.TrackViewHolder>{
+public class TrackRvAdapter extends RecyclerView.Adapter<TrackRvAdapter.TrackViewHolder> {
 
     private Context context;
     private List<Track> trackList;
+    TrackSelectedListener listener;
 
-    public TrackRvAdapter(Context context, List<Track> trackList) {
+    public TrackRvAdapter(Context context, List<Track> trackList, TrackSelectedListener listener) {
         this.context = context;
         this.trackList = trackList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -52,11 +54,11 @@ public class TrackRvAdapter extends RecyclerView.Adapter<TrackRvAdapter.TrackVie
         return trackList.size();
     }
 
-    public class TrackViewHolder extends RecyclerView.ViewHolder{
+    public class TrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView trackTitle;
-        ImageView trackImage;
-        TextView trackDuration;
+        private TextView trackTitle;
+        private ImageView trackImage;
+        private TextView trackDuration;
 
         public TrackViewHolder(View itemView) {
             super(itemView);
@@ -64,24 +66,35 @@ public class TrackRvAdapter extends RecyclerView.Adapter<TrackRvAdapter.TrackVie
             trackTitle = itemView.findViewById(R.id.track_title);
             trackImage = itemView.findViewById(R.id.track_cover);
             trackDuration = itemView.findViewById(R.id.track_duration);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int clickedPosition = getAdapterPosition();
+            listener.onTrackSelectedListener(clickedPosition);
+
         }
     }
 
     // converting time
     private String convertTime(long millis) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
 
         long hours = millis / (1000 * 60 * 60);
         long minutes = (millis % (1000 * 60 * 60)) / (1000 * 60);
         long seconds = ((millis % (1000 * 60 * 60)) % (1000 * 60)) / 1000;
 
-        buf
-                .append(String.format("%02d", hours))
+        sb.append(String.format("%02d", hours))
                 .append(":")
                 .append(String.format("%02d", minutes))
                 .append(":")
                 .append(String.format("%02d", seconds));
 
-        return buf.toString();
+        return sb.toString();
+    }
+
+    public interface TrackSelectedListener {
+        void onTrackSelectedListener(int clickedItemIndex);
     }
 }
