@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by c4q-jorgereina on 12/15/15.
  */
-public class TrackResponse {
+public class Track {
 
     @SerializedName("kind")
     @Expose

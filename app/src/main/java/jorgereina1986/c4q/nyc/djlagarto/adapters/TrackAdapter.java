@@ -13,14 +13,14 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import jorgereina1986.c4q.nyc.djlagarto.R;
-import jorgereina1986.c4q.nyc.djlagarto.model.tracks.TrackResponse;
+import jorgereina1986.c4q.nyc.djlagarto.model.tracks.Track;
 
 public class TrackAdapter extends BaseAdapter {
 
     private Context context;
-    private List<TrackResponse> tracks;
+    private List<Track> tracks;
 
-    public TrackAdapter(Context context, List<TrackResponse> tracks) {
+    public TrackAdapter(Context context, List<Track> tracks) {
         this.context = context;
         this.tracks = tracks;
     }
@@ -42,7 +42,7 @@ public class TrackAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TrackResponse track = tracks.get(position);
+        Track track = tracks.get(position);
 
         ViewHolder holder;
 
@@ -51,9 +51,9 @@ public class TrackAdapter extends BaseAdapter {
             holder = new ViewHolder();
 
             convertView = LayoutInflater.from(context).inflate(R.layout.track_row, parent, false);
-            holder.trackHolder = (TextView) convertView.findViewById(R.id.track_title);
-            holder.imageHolder = (ImageView) convertView.findViewById(R.id.track_cover);
-            holder.durationHolder = (TextView) convertView.findViewById(R.id.track_duration);
+            holder.trackHolder = convertView.findViewById(R.id.track_title);
+            holder.imageHolder = convertView.findViewById(R.id.track_cover);
+            holder.durationHolder = convertView.findViewById(R.id.track_duration);
 
             convertView.setTag(holder);
         } else {
