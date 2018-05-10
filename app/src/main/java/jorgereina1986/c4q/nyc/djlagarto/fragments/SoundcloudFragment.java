@@ -1,7 +1,5 @@
 package jorgereina1986.c4q.nyc.djlagarto.fragments;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,15 +15,15 @@ import java.util.List;
 
 import jorgereina1986.c4q.nyc.djlagarto.BuildConfig;
 import jorgereina1986.c4q.nyc.djlagarto.R;
-import jorgereina1986.c4q.nyc.djlagarto.model.tracks.Track;
-import jorgereina1986.c4q.nyc.djlagarto.retrofit.SoundcloudApi;
+import jorgereina1986.c4q.nyc.djlagarto.model.soundcloud.Track;
+import jorgereina1986.c4q.nyc.djlagarto.retrofit.SoundCloudApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SoundcloudFragment extends android.support.v4.app.Fragment implements TrackRvAdapter.TrackSelectedListener {
+public class SoundcloudFragment extends android.support.v4.app.Fragment implements SoundCloudAdapter.TrackSelectedListener {
 
     private static final String TAG = "MainActivity";
     private static final String CLIENT_ID = BuildConfig.CLIENT_ID;
@@ -33,7 +31,7 @@ public class SoundcloudFragment extends android.support.v4.app.Fragment implemen
 
     private RecyclerView soundcloudRv;
     private List<Track> resultList = new ArrayList<>();
-    private TrackRvAdapter rvAdapter;
+    private SoundCloudAdapter rvAdapter;
     private PlayerCommunicator playerCommunicator;
 
     @Nullable
@@ -41,7 +39,7 @@ public class SoundcloudFragment extends android.support.v4.app.Fragment implemen
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.soundcloud_fragment, container, false);
-        rvAdapter = new TrackRvAdapter(getContext(), resultList, this);
+        rvAdapter = new SoundCloudAdapter(getContext(), resultList, this);
         soundcloudRv = rootView.findViewById(R.id.soundcloud_rv);
         soundcloudRv.setAdapter(rvAdapter);
         soundcloudRv.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -53,18 +51,17 @@ public class SoundcloudFragment extends android.support.v4.app.Fragment implemen
         super.onViewCreated(view, savedInstanceState);
 
         playerCommunicator = (PlayerCommunicator) getActivity();
-
-        networkRequest();
+        getSoundCloudTracks();
     }
 
-    private void networkRequest() {
+    private void getSoundCloudTracks() {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        SoundcloudApi service = retrofit.create(SoundcloudApi.class);
+        SoundCloudApi service = retrofit.create(SoundCloudApi.class);
 
         Call<List<Track>> tracksCall = service.trackResponse(CLIENT_ID);
         tracksCall.enqueue(new Callback<List<Track>>() {

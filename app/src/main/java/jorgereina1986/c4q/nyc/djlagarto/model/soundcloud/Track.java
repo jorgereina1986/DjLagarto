@@ -1,4 +1,4 @@
-package jorgereina1986.c4q.nyc.djlagarto.model.tracks;
+package jorgereina1986.c4q.nyc.djlagarto.model.soundcloud;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -124,7 +124,7 @@ public class Track {
     private String streamUrl;
     @SerializedName("playback_count")
     @Expose
-    private Integer playbackCount;
+    private long playbackCount;
     @SerializedName("download_count")
     @Expose
     private Integer downloadCount;
@@ -830,7 +830,7 @@ public class Track {
      * @return
      * The playbackCount
      */
-    public Integer getPlaybackCount() {
+    public long getPlaybackCount() {
         return playbackCount;
     }
 
@@ -839,7 +839,7 @@ public class Track {
      * @param playbackCount
      * The playback_count
      */
-    public void setPlaybackCount(Integer playbackCount) {
+    public void setPlaybackCount(long playbackCount) {
         this.playbackCount = playbackCount;
     }
 
