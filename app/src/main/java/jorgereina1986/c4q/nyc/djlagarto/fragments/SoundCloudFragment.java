@@ -23,13 +23,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SoundcloudFragment extends android.support.v4.app.Fragment implements SoundCloudAdapter.TrackSelectedListener {
+public class SoundCloudFragment extends android.support.v4.app.Fragment implements SoundCloudAdapter.TrackSelectedListener {
 
     private static final String TAG = "MainActivity";
     private static final String CLIENT_ID = BuildConfig.CLIENT_ID;
     private static final String BASE_URL = "https://api.soundcloud.com/";
 
-    private RecyclerView soundcloudRv;
+    private RecyclerView soundCloudRv;
     private List<Track> resultList = new ArrayList<>();
     private SoundCloudAdapter rvAdapter;
     private PlayerCommunicator playerCommunicator;
@@ -40,9 +40,9 @@ public class SoundcloudFragment extends android.support.v4.app.Fragment implemen
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.soundcloud_fragment, container, false);
         rvAdapter = new SoundCloudAdapter(getContext(), resultList, this);
-        soundcloudRv = rootView.findViewById(R.id.soundcloud_rv);
-        soundcloudRv.setAdapter(rvAdapter);
-        soundcloudRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        soundCloudRv = rootView.findViewById(R.id.soundcloud_rv);
+        soundCloudRv.setAdapter(rvAdapter);
+        soundCloudRv.setLayoutManager(new LinearLayoutManager(getContext()));
         return rootView;
     }
 
@@ -68,22 +68,21 @@ public class SoundcloudFragment extends android.support.v4.app.Fragment implemen
             @Override
             public void onResponse(Call<List<Track>> call, Response<List<Track>> response) {
 
-                Log.d(TAG, "response: " + response.body().get(1).getTitle());
+                Log.d(TAG, "response: " + response.body().get(0).getTitle());
+                Log.d(TAG, "onResponse: " + response.body().get(0).getArtworkUrl());
                 resultList.addAll(response.body());
                 rvAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<List<Track>> call, Throwable t) {
-
-                Toast.makeText(getContext(), t + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public void onTrackSelectedListener(int clickedItemIndex) {
-
         Track track = resultList.get(clickedItemIndex);
         playerCommunicator.updatePlayer(track.getTitle(), track.getArtworkUrl(), track.getStreamUrl(), track.getDuration());
     }

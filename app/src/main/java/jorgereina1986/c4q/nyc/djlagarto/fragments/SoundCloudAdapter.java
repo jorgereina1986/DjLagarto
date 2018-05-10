@@ -43,7 +43,7 @@ public class SoundCloudAdapter extends RecyclerView.Adapter<SoundCloudAdapter.Tr
     public void onBindViewHolder(@NonNull TrackViewHolder holder, int position) {
 
         Track track = trackList.get(position);
-        Picasso.with(context).load(track.getArtworkUrl()).into(holder.trackImage);
+        Picasso.with(context).load(track.getArtworkUrl()).placeholder(R.mipmap.ic_launcher).into(holder.trackImage);
         holder.trackTitle.setText(track.getTitle());
         holder.trackDuration.setText(convertTime(track.getDuration()));
         holder.numOfPlays.setText(convertNumOfPlays(track.getPlaybackCount()));
@@ -54,7 +54,7 @@ public class SoundCloudAdapter extends RecyclerView.Adapter<SoundCloudAdapter.Tr
         return trackList.size();
     }
 
-    public class TrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class TrackViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView trackTitle;
         private ImageView trackImage;
@@ -99,12 +99,10 @@ public class SoundCloudAdapter extends RecyclerView.Adapter<SoundCloudAdapter.Tr
     private String convertNumOfPlays(long plays) {
         String shortNmOfPLays;
         if (plays >= 1000000) {
-            shortNmOfPLays = String.format("%.1fM", plays/ 1000000.0);
-        }
-        else if (plays >= 1000 && plays < 1000000) {
-            shortNmOfPLays = String.format("%.1fK", plays/1000.0);
-        }
-        else {
+            shortNmOfPLays = String.format("%.1fM", plays / 1000000.0);
+        } else if (plays >= 1000 && plays < 1000000) {
+            shortNmOfPLays = String.format("%.1fK", plays / 1000.0);
+        } else {
             shortNmOfPLays = String.valueOf(plays);
         }
         return shortNmOfPLays;
