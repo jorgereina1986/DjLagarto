@@ -16,7 +16,7 @@ import jorgereina1986.c4q.nyc.djlagarto.R;
 import jorgereina1986.c4q.nyc.djlagarto.adapters.ChartRvAdapter;
 import jorgereina1986.c4q.nyc.djlagarto.model.chart.ChartResponse;
 import jorgereina1986.c4q.nyc.djlagarto.model.chart.Entry;
-import jorgereina1986.c4q.nyc.djlagarto.retrofit.ItunesApi;
+import jorgereina1986.c4q.nyc.djlagarto.retrofit.ChartsApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -47,21 +47,20 @@ public class ChartsFragment extends Fragment implements ChartRvAdapter.ListItemC
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        playerCommunicator = (PlayerCommunicator) getActivity();
 
-        networkRequest();
+        playerCommunicator = (PlayerCommunicator) getActivity();
+        getChartTracks();
     }
 
-    private void networkRequest() {
+    private void getChartTracks() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        ItunesApi service = retrofit.create(ItunesApi.class);
+        ChartsApi service = retrofit.create(ChartsApi.class);
 
         Call<ChartResponse> chartResponseCall = service.listCharts();
-
         chartResponseCall.enqueue(new Callback<ChartResponse>() {
             @Override
             public void onResponse(Call<ChartResponse> call, Response<ChartResponse> response) {

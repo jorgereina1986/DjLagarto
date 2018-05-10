@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import jorgereina1986.c4q.nyc.djlagarto.fragments.ChartsFragment;
-import jorgereina1986.c4q.nyc.djlagarto.fragments.SoundcloudFragment;
+import jorgereina1986.c4q.nyc.djlagarto.fragments.SoundCloudFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
     public ViewPagerAdapter(FragmentManager fm) {
@@ -21,7 +21,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 pageFragment = new ChartsFragment();
                 break;
             case 1:
-                pageFragment = new SoundcloudFragment();
+                pageFragment = new SoundCloudFragment();
                 break;
             default:
                 return null;

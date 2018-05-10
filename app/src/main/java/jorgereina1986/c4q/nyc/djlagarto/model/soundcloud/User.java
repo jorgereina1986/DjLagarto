@@ -1,4 +1,4 @@
-package jorgereina1986.c4q.nyc.djlagarto.model.tracks;
+package jorgereina1986.c4q.nyc.djlagarto.model.soundcloud;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

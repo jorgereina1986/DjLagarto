@@ -1,19 +1,22 @@
 package jorgereina1986.c4q.nyc.djlagarto.activities;
 
 import android.app.FragmentManager;
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import jorgereina1986.c4q.nyc.djlagarto.R;
 import jorgereina1986.c4q.nyc.djlagarto.adapters.ViewPagerAdapter;
 import jorgereina1986.c4q.nyc.djlagarto.fragments.PlayerCommunicator;
 import jorgereina1986.c4q.nyc.djlagarto.fragments.PlayerFragment;
 
-public class Main2Activity extends AppCompatActivity implements PlayerCommunicator{
+public class Main2Activity extends AppCompatActivity implements PlayerCommunicator {
 
     private ViewPager viewPager;
     private PagerAdapter adapter;
@@ -26,6 +29,9 @@ public class Main2Activity extends AppCompatActivity implements PlayerCommunicat
         setContentView(R.layout.activity_main2);
         bindViews();
 
+        if (!isNetworkAvailable(this)) {
+            Toast.makeText(this, "Network error. Please make sure you are connected to the internet", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void bindViews() {
@@ -45,5 +51,10 @@ public class Main2Activity extends AppCompatActivity implements PlayerCommunicat
         PlayerFragment playerFragment = (PlayerFragment) fragmentManager.findFragmentById(R.id.fragment_player);
         playerFragment.addDataToPlayer(title, albumCover, trackUrl, duration);
 
+    }
+
+    public boolean isNetworkAvailable(final Context context) {
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 }

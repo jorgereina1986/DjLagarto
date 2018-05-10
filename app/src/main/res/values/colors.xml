@@ -3,4 +3,5 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorPrimary">#383838</color>
     <color name="colorAccent">#10c422</color>
+    <color name="num_of_play_icon_tint">#606060</color>
 </resources>
