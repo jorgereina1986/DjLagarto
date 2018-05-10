@@ -40,11 +40,11 @@ public class PlayerFragment extends android.app.Fragment {
                              Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_player, container, false);
-        selectedTrackTitle = (TextView) rootView.findViewById(R.id.current_track_tv1);
-        selectedTrackImage = (ImageView) rootView.findViewById(R.id.current_track_iv1);
-        playerControl = (ImageView) rootView.findViewById(R.id.player_control_iv1);
-        time = (TextView) rootView.findViewById(R.id.time_tv);
-        seekBar =  (SeekBar) rootView.findViewById(R.id.seekbar);
+        selectedTrackTitle = rootView.findViewById(R.id.current_track_tv1);
+        selectedTrackImage = rootView.findViewById(R.id.current_track_iv1);
+        playerControl = rootView.findViewById(R.id.player_control_iv1);
+        time = rootView.findViewById(R.id.time_tv);
+        seekBar =  rootView.findViewById(R.id.seekbar);
         return rootView;
 
     }

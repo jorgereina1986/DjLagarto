@@ -3,18 +3,18 @@ package jorgereina1986.c4q.nyc.djlagarto.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import jorgereina1986.c4q.nyc.djlagarto.R;
-import jorgereina1986.c4q.nyc.djlagarto.adapters.ChartAdapter;
+import jorgereina1986.c4q.nyc.djlagarto.adapters.ChartRvAdapter;
 import jorgereina1986.c4q.nyc.djlagarto.model.chart.ChartResponse;
 import jorgereina1986.c4q.nyc.djlagarto.model.chart.Entry;
 import jorgereina1986.c4q.nyc.djlagarto.retrofit.ItunesApi;
@@ -26,28 +26,31 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ChartsFragment extends Fragment {
 
-    private static final String TAG = "Charts Activity --->";
+    private static final String TAG = "jorge";
     private static final String BASE_URL = "https://itunes.apple.com";
 
-    private ChartAdapter chartAdapter;
-    private List<Entry> entryList;
-    private ListView chartLv;
-    PlayerCommunicator playerCommunicator;
+
+    private RecyclerView chartRv;
+    private ChartRvAdapter adapter;
+    private List<Entry> entryList =  new ArrayList<>();
+    private PlayerCommunicator playerCommunicator;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.chart_fragment, container, false);
-        chartLv = (ListView) rootView.findViewById(R.id.chart_list_view);
-        entryList = new ArrayList<>();
+        chartRv = rootView.findViewById(R.id.chart_rv);
+        adapter = new ChartRvAdapter(getContext(), entryList);
+        chartRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        chartRv.setAdapter(adapter);
         return rootView;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         playerCommunicator = (PlayerCommunicator) getActivity();
+
         networkRequest();
     }
 
@@ -65,13 +68,9 @@ public class ChartsFragment extends Fragment {
             @Override
             public void onResponse(Call<ChartResponse> call, Response<ChartResponse> response) {
 
-                Log.d(TAG, response.body().getFeed().getEntry().get(0).getImName().getLabel()+"");
-                entryList = response.body().getFeed().getEntry();
-                chartAdapter = new ChartAdapter(getContext(), entryList);
-                chartLv.setAdapter(chartAdapter);
-
-                onTrackClicked();
-
+                entryList.addAll(response.body().getFeed().getEntry());
+                adapter.notifyDataSetChanged();
+//                onTrackClicked();
             }
 
             @Override
@@ -81,22 +80,22 @@ public class ChartsFragment extends Fragment {
         });
     }
 
-    private void onTrackClicked() {
-
-        chartLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Entry entry = entryList.get(position);
-
-                String title = entry.getImName().getLabel();
-                String album = entry.getImImage().get(2).getLabel();
-                String url = entry.getLink().get(1).getAttributes().getHref();
-                String durationS = entry.getLink().get(1).getImDuration().getLabel();
-                int duration = Integer.parseInt(durationS);
-
-                playerCommunicator.updatePlayer(title, album, url, duration);
-            }
-        });
+//    private void onTrackClicked() {
+//
+//        chartLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                Entry entry = entryList.get(position);
+//
+//                String title = entry.getImName().getLabel();
+//                String album = entry.getImImage().get(2).getLabel();
+//                String url = entry.getLink().get(1).getAttributes().getHref();
+//                String durationS = entry.getLink().get(1).getImDuration().getLabel();
+//                int duration = Integer.parseInt(durationS);
+//
+//                playerCommunicator.updatePlayer(title, album, url, duration);
+//            }
+//        });
     }
-}
+
