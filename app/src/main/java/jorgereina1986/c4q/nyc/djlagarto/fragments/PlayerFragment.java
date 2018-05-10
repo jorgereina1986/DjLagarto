@@ -100,7 +100,7 @@ public class PlayerFragment extends android.app.Fragment {
         }
     }
 
-    public void updatePlayer(String title, String albumCover, String trackUrl, int duration){
+    public void addDataToPlayer(String title, String albumCover, String trackUrl, int duration){
 
         selectedTrackTitle.setText(title);
         Picasso.with(getActivity()).load(albumCover).into(selectedTrackImage);
