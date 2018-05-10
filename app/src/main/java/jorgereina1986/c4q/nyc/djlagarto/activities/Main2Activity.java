@@ -15,7 +15,6 @@ import jorgereina1986.c4q.nyc.djlagarto.fragments.PlayerFragment;
 
 public class Main2Activity extends AppCompatActivity implements PlayerCommunicator{
 
-    private static final int NUM_PAGES = 2;
     private ViewPager viewPager;
     private PagerAdapter adapter;
     private TabLayout tabLayout;
@@ -31,8 +30,8 @@ public class Main2Activity extends AppCompatActivity implements PlayerCommunicat
 
     private void bindViews() {
 
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        tabLayout = findViewById(R.id.tab_layout);
+        viewPager = findViewById(R.id.view_pager);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
