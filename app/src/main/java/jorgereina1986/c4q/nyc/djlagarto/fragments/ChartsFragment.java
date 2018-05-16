@@ -1,5 +1,6 @@
 package jorgereina1986.c4q.nyc.djlagarto.fragments;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import jorgereina1986.c4q.nyc.djlagarto.R;
 import jorgereina1986.c4q.nyc.djlagarto.adapters.ChartRvAdapter;
+import jorgereina1986.c4q.nyc.djlagarto.databinding.ChartFragmentBinding;
 import jorgereina1986.c4q.nyc.djlagarto.model.chart.ChartResponse;
 import jorgereina1986.c4q.nyc.djlagarto.model.chart.Entry;
 import jorgereina1986.c4q.nyc.djlagarto.retrofit.ChartsApi;
@@ -28,7 +30,7 @@ public class ChartsFragment extends Fragment implements ChartRvAdapter.ListItemC
     private static final String TAG = "jorge";
     private static final String BASE_URL = "https://itunes.apple.com";
 
-    private RecyclerView chartRv;
+    private ChartFragmentBinding binding;
     private ChartRvAdapter adapter;
     private List<Entry> entryList = new ArrayList<>();
     private PlayerCommunicator playerCommunicator;
@@ -36,12 +38,12 @@ public class ChartsFragment extends Fragment implements ChartRvAdapter.ListItemC
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.chart_fragment, container, false);
-        chartRv = rootView.findViewById(R.id.chart_rv);
+        binding = DataBindingUtil.inflate(inflater, R.layout.chart_fragment, container, false);
+        View view = binding.getRoot();
         adapter = new ChartRvAdapter(getContext(), entryList, this);
-        chartRv.setLayoutManager(new LinearLayoutManager(getContext()));
-        chartRv.setAdapter(adapter);
-        return rootView;
+        binding.chartRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.chartRv.setAdapter(adapter);
+        return view;
     }
 
     @Override

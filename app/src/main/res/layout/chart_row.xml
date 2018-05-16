@@ -1,41 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="5dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/rank_num_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="#1" />
-
-    <ImageView
-        android:id="@+id/album_iv"
-        android:layout_width="35dp"
-        android:layout_height="35dp" />
+    <data>
+        <variable
+            name="entry"
+            type="jorgereina1986.c4q.nyc.djlagarto.model.chart.Entry" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="5dp">
+        android:orientation="horizontal"
+        android:padding="@dimen/layout_padding_5dp">
 
         <TextView
-            android:id="@+id/title_tv"
+            android:id="@+id/rank_num_tv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textColor="#ffffff" />
+            android:layout_height="match_parent"
+            android:text="#1" />
 
-        <TextView
-            android:id="@+id/artist_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Artist"
-            android:textColor="#ffffff" />
+        <ImageView
+            android:id="@+id/album_iv"
+            android:layout_width="@dimen/item_row_artwork_55dp"
+            android:layout_height="@dimen/item_row_artwork_55dp"
+            bind:imImage="@{entry.imImage.get(2).label}"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/layout_padding_5dp">
+
+            <TextView
+                android:id="@+id/title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{entry.imName.label}"
+                android:textColor="@color/white_text" />
+
+            <TextView
+                android:id="@+id/artist_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{entry.imArtist.label}"
+                android:textColor="@color/white_text" />
+        </LinearLayout>
     </LinearLayout>
-
-</LinearLayout>
+</layout>

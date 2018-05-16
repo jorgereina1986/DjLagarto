@@ -4,4 +4,9 @@
     <color name="colorPrimary">#383838</color>
     <color name="colorAccent">#10c422</color>
     <color name="num_of_play_icon_tint">#606060</color>
+    <color name="rv_background">#262626</color>
+    <color name="frame_layout_color">#1a1a1a</color>
+    <color name="album_background">#000</color>
+    <color name="white_text">#fff</color>
+    <color name="item_row_artwork_color">#1a1a1a</color>
 </resources>
