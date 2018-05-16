@@ -24,7 +24,7 @@
             android:id="@+id/album_iv"
             android:layout_width="@dimen/item_row_artwork_55dp"
             android:layout_height="@dimen/item_row_artwork_55dp"
-            bind:imImage="@{entry.imImage.get(2).label}"/>
+            bind:imImage="@{entry.artwork.get(2).label}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,14 +36,14 @@
                 android:id="@+id/title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{entry.imName.label}"
+                android:text="@{entry.title.label}"
                 android:textColor="@color/white_text" />
 
             <TextView
                 android:id="@+id/artist_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{entry.imArtist.label}"
+                android:text="@{entry.artist.label}"
                 android:textColor="@color/white_text" />
         </LinearLayout>
     </LinearLayout>
