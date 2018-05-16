@@ -50,7 +50,6 @@ public class SoundCloudFragment extends android.support.v4.app.Fragment implemen
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         playerCommunicator = (PlayerCommunicator) getActivity();
         getSoundCloudTracks();
     }

@@ -13,17 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="11dp"
+        android:padding="@dimen/soundcloud_item_row_padding_10dp"
         android:weightSum="13">
 
         <ImageView
-            android:id="@+id/track_cover_iv"
+            android:id="@+id/track_artwork_iv"
             android:layout_width="0dp"
-            android:layout_height="65dp"
+            android:layout_height="@dimen/item_row_artwork_55dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="2"
-            android:background="#1a1a1a"
-            android:padding="5dp"
+            android:background="@color/item_row_artwork_color"
             bind:getArtworkUrl="@{track.artworkUrl}" />
 
         <LinearLayout
@@ -31,15 +30,15 @@
             android:layout_height="match_parent"
             android:layout_weight="9"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="@dimen/layout_padding_5dp">
 
             <TextView
                 android:id="@+id/track_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{track.title}"
-                android:textColor="#fff"
-                android:textSize="15sp" />
+                android:textColor="@color/white_text"
+                android:textSize="@dimen/text_size_15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -53,19 +52,20 @@
                 android:id="@+id/num_of_plays_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_play_arrow_black_24dp"
+                android:drawableLeft="@color/num_of_play_icon_tint"
+                android:drawableStart="@drawable/ic_play_arrow_black_24dp"
                 android:drawableTint="@color/num_of_play_icon_tint"
                 android:gravity="center"
-                android:textColor="#fff"
-                android:textSize="10sp"
+                android:textColor="@color/white_text"
+                android:textSize="@dimen/text_size_12sp"
                 bind:playcount="@{track.playbackCount}" />
 
             <TextView
                 android:id="@+id/track_duration_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:textSize="15sp"
+                android:textColor="@color/white_text"
+                android:textSize="@dimen/text_size_15sp"
                 bind:duration="@{track.duration}" />
         </LinearLayout>
     </LinearLayout>
