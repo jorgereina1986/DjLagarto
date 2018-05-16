@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import jorgereina1986.c4q.nyc.djlagarto.R;
+import jorgereina1986.c4q.nyc.djlagarto.databinding.ChartRowBinding;
 import jorgereina1986.c4q.nyc.djlagarto.model.chart.Entry;
 
 /**
@@ -35,8 +36,9 @@ public class ChartRvAdapter extends RecyclerView.Adapter<ChartRvAdapter.ChartVie
     @NonNull
     @Override
     public ChartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.chart_row, parent, false);
-        return new ChartViewHolder(view);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        ChartRowBinding binding = ChartRowBinding.inflate(inflater, parent, false);
+        return new ChartViewHolder(binding);
     }
 
     @Override
@@ -44,9 +46,11 @@ public class ChartRvAdapter extends RecyclerView.Adapter<ChartRvAdapter.ChartVie
 
         Entry entry = entryList.get(position);
 
-        Picasso.with(context).load(entry.getImImage().get(0).getLabel()).into(holder.albumCover);
-        holder.titleHolder.setText(entry.getImName().getLabel());
-        holder.artistHolder.setText(entry.getImArtist().getLabel());
+        holder.binding.setEntry(entry);
+
+//        Picasso.with(context).load(entry.getImImage().get(0).getLabel()).into(holder.binding.albumIv);
+//        holder.binding.titleTv.setText(entry.getImName().getLabel());
+//        holder.binding.artistTv.setText(entry.getImArtist().getLabel());
     }
 
     @Override
@@ -56,17 +60,12 @@ public class ChartRvAdapter extends RecyclerView.Adapter<ChartRvAdapter.ChartVie
 
     public class ChartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        private TextView titleHolder;
-        private TextView artistHolder;
-        private ImageView albumCover;
+        private ChartRowBinding binding;
 
-        public ChartViewHolder(View itemView) {
-            super(itemView);
-
-            titleHolder = itemView.findViewById(R.id.title_tv);
-            artistHolder = itemView.findViewById(R.id.artist_tv);
-            albumCover = itemView.findViewById(R.id.album_iv);
-            itemView.setOnClickListener(this);
+        public ChartViewHolder(ChartRowBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+            binding.getRoot().setOnClickListener(this);
         }
 
         @Override
