@@ -1,5 +1,6 @@
 package jorgereina1986.c4q.nyc.djlagarto.fragments;
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,6 +16,7 @@ import java.util.List;
 
 import jorgereina1986.c4q.nyc.djlagarto.BuildConfig;
 import jorgereina1986.c4q.nyc.djlagarto.R;
+import jorgereina1986.c4q.nyc.djlagarto.databinding.SoundcloudFragmentBinding;
 import jorgereina1986.c4q.nyc.djlagarto.model.soundcloud.Track;
 import jorgereina1986.c4q.nyc.djlagarto.retrofit.SoundCloudApi;
 import retrofit2.Call;
@@ -29,7 +31,7 @@ public class SoundCloudFragment extends android.support.v4.app.Fragment implemen
     private static final String CLIENT_ID = BuildConfig.CLIENT_ID;
     private static final String BASE_URL = "https://api.soundcloud.com/";
 
-    private RecyclerView soundCloudRv;
+    private SoundcloudFragmentBinding binding;
     private List<Track> resultList = new ArrayList<>();
     private SoundCloudAdapter rvAdapter;
     private PlayerCommunicator playerCommunicator;
@@ -37,13 +39,12 @@ public class SoundCloudFragment extends android.support.v4.app.Fragment implemen
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.soundcloud_fragment, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.soundcloud_fragment, container, false);
+        View view = binding.getRoot();
         rvAdapter = new SoundCloudAdapter(getContext(), resultList, this);
-        soundCloudRv = rootView.findViewById(R.id.soundcloud_rv);
-        soundCloudRv.setAdapter(rvAdapter);
-        soundCloudRv.setLayoutManager(new LinearLayoutManager(getContext()));
-        return rootView;
+        binding.soundcloudRv.setAdapter(rvAdapter);
+        binding.soundcloudRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        return view;
     }
 
     @Override

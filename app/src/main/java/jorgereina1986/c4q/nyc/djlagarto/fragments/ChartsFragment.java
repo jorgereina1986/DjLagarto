@@ -31,7 +31,6 @@ public class ChartsFragment extends Fragment implements ChartRvAdapter.ListItemC
     private static final String BASE_URL = "https://itunes.apple.com";
 
     private ChartFragmentBinding binding;
-    private RecyclerView chartRv;
     private ChartRvAdapter adapter;
     private List<Entry> entryList = new ArrayList<>();
     private PlayerCommunicator playerCommunicator;
@@ -41,10 +40,9 @@ public class ChartsFragment extends Fragment implements ChartRvAdapter.ListItemC
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.chart_fragment, container, false);
         View view = binding.getRoot();
-        chartRv = view.findViewById(R.id.chart_rv);
         adapter = new ChartRvAdapter(getContext(), entryList, this);
-        chartRv.setLayoutManager(new LinearLayoutManager(getContext()));
-        chartRv.setAdapter(adapter);
+        binding.chartRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.chartRv.setAdapter(adapter);
         return view;
     }
 

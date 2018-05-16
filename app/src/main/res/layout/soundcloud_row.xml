@@ -1,60 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="11dp"
-    android:weightSum="11">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/track_cover_tv"
-        android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:layout_gravity="center_vertical"
-        android:background="#1a1a1a"
-        android:padding="5dp"
-        android:layout_weight="2"/>
-
+    <data>
+        <variable
+            name="track"
+            type="jorgereina1986.c4q.nyc.djlagarto.model.soundcloud.Track"/>
+    </data>
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="5dp"
-        android:layout_weight="7">
+        android:padding="11dp"
+        android:weightSum="11">
 
-        <TextView
-            android:id="@+id/track_title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hello"
-            android:textColor="#fff"
-            android:textSize="17sp" />
+        <ImageView
+            android:id="@+id/track_cover_iv"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:background="#1a1a1a"
+            android:padding="5dp"
+            bind:getArtworkUrl="@{track.artworkUrl}"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="7"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/track_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{track.title}"
+                android:textColor="#fff"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="end|bottom"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/num_of_plays_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_play_arrow_black_24dp"
+                android:drawableTint="@color/num_of_play_icon_tint"
+                android:gravity="center"
+                android:text="hello"
+                android:textColor="#fff"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/track_duration_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hello"
+                android:textColor="#fff"
+                android:textSize="15sp" />
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:gravity="end|bottom"
-        android:orientation="vertical"
-        android:layout_weight="2">
-
-        <TextView
-            android:id="@+id/num_of_plays_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_play_arrow_black_24dp"
-            android:drawableTint="@color/num_of_play_icon_tint"
-            android:gravity="center"
-            android:text="hello"
-            android:textColor="#fff"
-            android:textSize="10sp" />
-
-        <TextView
-            android:id="@+id/track_duration_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="helo"
-            android:textColor="#fff"
-            android:textSize="15sp" />
-    </LinearLayout>
-</LinearLayout>
+</layout>

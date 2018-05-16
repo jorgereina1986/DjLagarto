@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso;
  * Created by jorgereina on 5/16/18.
  */
 
-public class ImageBindingAdapter {
+public class ChartsImageBindingAdapter {
 
     @BindingAdapter({"bind:imImage"})
     public static void loadImage(ImageView imageView, String url) {
