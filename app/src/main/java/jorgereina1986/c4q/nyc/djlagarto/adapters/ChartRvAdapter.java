@@ -47,10 +47,7 @@ public class ChartRvAdapter extends RecyclerView.Adapter<ChartRvAdapter.ChartVie
         Entry entry = entryList.get(position);
 
         holder.binding.setEntry(entry);
-
-//        Picasso.with(context).load(entry.getImImage().get(0).getLabel()).into(holder.binding.albumIv);
-//        holder.binding.titleTv.setText(entry.getImName().getLabel());
-//        holder.binding.artistTv.setText(entry.getImArtist().getLabel());
+        holder.binding.executePendingBindings();
     }
 
     @Override

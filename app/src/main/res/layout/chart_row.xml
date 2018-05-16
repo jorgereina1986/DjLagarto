@@ -23,9 +23,9 @@
 
         <ImageView
             android:id="@+id/album_iv"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            bind:imImage="@{entry.imImage.get(0).label}"/>
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            bind:imImage="@{entry.imImage.get(2).label}"/>
 
         <LinearLayout
             android:layout_width="match_parent"
