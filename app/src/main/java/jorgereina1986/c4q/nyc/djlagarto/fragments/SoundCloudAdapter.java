@@ -77,35 +77,6 @@ public class SoundCloudAdapter extends RecyclerView.Adapter<SoundCloudAdapter.Tr
         }
     }
 
-    // converting time
-    private String convertTime(long millis) {
-        StringBuilder sb = new StringBuilder();
-
-        long hours = millis / (1000 * 60 * 60);
-        long minutes = (millis % (1000 * 60 * 60)) / (1000 * 60);
-        long seconds = ((millis % (1000 * 60 * 60)) % (1000 * 60)) / 1000;
-
-        sb.append(String.format("%02d", hours))
-                .append(":")
-                .append(String.format("%02d", minutes))
-                .append(":")
-                .append(String.format("%02d", seconds));
-
-        return sb.toString();
-    }
-
-    private String convertNumOfPlays(long plays) {
-        String shortNmOfPLays;
-        if (plays >= 1000000) {
-            shortNmOfPLays = String.format("%.1fM", plays / 1000000.0);
-        } else if (plays >= 1000 && plays < 1000000) {
-            shortNmOfPLays = String.format("%.1fK", plays / 1000.0);
-        } else {
-            shortNmOfPLays = String.valueOf(plays);
-        }
-        return shortNmOfPLays;
-    }
-
     public interface TrackSelectedListener {
         void onTrackSelectedListener(int clickedItemIndex);
     }

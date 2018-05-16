@@ -3,16 +3,18 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="track"
-            type="jorgereina1986.c4q.nyc.djlagarto.model.soundcloud.Track"/>
+            type="jorgereina1986.c4q.nyc.djlagarto.model.soundcloud.Track" />
     </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="11dp"
-        android:weightSum="11">
+        android:weightSum="13">
 
         <ImageView
             android:id="@+id/track_cover_iv"
@@ -22,12 +24,12 @@
             android:layout_weight="2"
             android:background="#1a1a1a"
             android:padding="5dp"
-            bind:getArtworkUrl="@{track.artworkUrl}"/>
+            bind:getArtworkUrl="@{track.artworkUrl}" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="7"
+            android:layout_weight="9"
             android:orientation="horizontal"
             android:padding="5dp">
 
@@ -37,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{track.title}"
                 android:textColor="#fff"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -54,17 +56,17 @@
                 android:drawableLeft="@drawable/ic_play_arrow_black_24dp"
                 android:drawableTint="@color/num_of_play_icon_tint"
                 android:gravity="center"
-                android:text="hello"
                 android:textColor="#fff"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                bind:playcount="@{track.playbackCount}" />
 
             <TextView
                 android:id="@+id/track_duration_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="hello"
                 android:textColor="#fff"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                bind:duration="@{track.duration}" />
         </LinearLayout>
     </LinearLayout>
 </layout>
