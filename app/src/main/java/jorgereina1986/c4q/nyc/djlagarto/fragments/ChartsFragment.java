@@ -81,10 +81,10 @@ public class ChartsFragment extends Fragment implements ChartRvAdapter.ListItemC
     public void onListItemClicked(int clickedItemIndex) {
 
         Entry entry = entryList.get(clickedItemIndex);
-        String title = entry.getImName().getLabel();
-        String album = entry.getImImage().get(2).getLabel();
+        String title = entry.getTitle().getLabel();
+        String album = entry.getArtwork().get(2).getLabel();
         String url = entry.getLink().get(1).getAttributes().getHref();
-        String durationS = entry.getLink().get(1).getImDuration().getLabel();
+        String durationS = entry.getLink().get(1).getDuration().getLabel();
         int duration = Integer.parseInt(durationS);
 
         playerCommunicator.updatePlayer(title, album, url, duration);

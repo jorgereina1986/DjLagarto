@@ -43,6 +43,7 @@ public class ChartRvAdapter extends RecyclerView.Adapter<ChartRvAdapter.ChartVie
 
         holder.binding.setEntry(entry);
         holder.binding.executePendingBindings();
+
     }
 
     @Override
