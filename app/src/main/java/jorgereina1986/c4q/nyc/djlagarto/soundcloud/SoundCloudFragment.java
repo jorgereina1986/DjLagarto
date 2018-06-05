@@ -10,13 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import jorgereina1986.c4q.nyc.djlagarto.BuildConfig;
 import jorgereina1986.c4q.nyc.djlagarto.R;
 import jorgereina1986.c4q.nyc.djlagarto.databinding.SoundcloudFragmentBinding;
-import jorgereina1986.c4q.nyc.djlagarto.player.PlayerListener;
+import jorgereina1986.c4q.nyc.djlagarto.soundcloud.events.SoundCloudEvent;
 import jorgereina1986.c4q.nyc.djlagarto.soundcloud.models.Track;
 import jorgereina1986.c4q.nyc.djlagarto.soundcloud.network.SoundCloudApi;
 import retrofit2.Call;
@@ -34,7 +36,6 @@ public class SoundCloudFragment extends android.support.v4.app.Fragment implemen
     private SoundcloudFragmentBinding binding;
     private List<Track> resultList = new ArrayList<>();
     private SoundCloudAdapter rvAdapter;
-    private PlayerListener playerListener;
 
     @Nullable
     @Override
@@ -50,7 +51,6 @@ public class SoundCloudFragment extends android.support.v4.app.Fragment implemen
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        playerListener = (PlayerListener) getActivity();
         getSoundCloudTracks();
     }
 
@@ -84,6 +84,6 @@ public class SoundCloudFragment extends android.support.v4.app.Fragment implemen
     @Override
     public void onTrackSelectedListener(int clickedItemIndex) {
         Track track = resultList.get(clickedItemIndex);
-        playerListener.updatePlayer(track.getTitle(), track.getArtworkUrl(), track.getStreamUrl(), track.getDuration());
+        EventBus.getDefault().post(new SoundCloudEvent(track));
     }
 }

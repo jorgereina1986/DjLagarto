@@ -58,7 +58,7 @@
                 android:gravity="center"
                 android:textColor="@color/white_text"
                 android:textSize="@dimen/text_size_12sp"
-                bind:playcount="@{track.playbackCount}" />
+                playcount="@{track.playbackCount}" />
 
             <TextView
                 android:id="@+id/track_duration_tv"
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white_text"
                 android:textSize="@dimen/text_size_15sp"
-                bind:duration="@{track.duration}" />
+                duration="@{track.duration}" />
         </LinearLayout>
     </LinearLayout>
 </layout>

@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso;
 
 public class ChartsImageBindingAdapter {
 
-    @BindingAdapter({"bind:artwork"})
+    @BindingAdapter({"artwork"})
     public static void loadImage(ImageView imageView, String url) {
         if (url!="") {
             Picasso.with(imageView.getContext()).load(url).into(imageView);
