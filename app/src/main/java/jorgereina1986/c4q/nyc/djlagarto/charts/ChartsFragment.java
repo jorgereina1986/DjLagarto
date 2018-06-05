@@ -9,12 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import jorgereina1986.c4q.nyc.djlagarto.R;
+import jorgereina1986.c4q.nyc.djlagarto.charts.events.ChartsEvent;
 import jorgereina1986.c4q.nyc.djlagarto.databinding.ChartFragmentBinding;
-import jorgereina1986.c4q.nyc.djlagarto.player.PlayerListener;
 import jorgereina1986.c4q.nyc.djlagarto.charts.models.ChartResponse;
 import jorgereina1986.c4q.nyc.djlagarto.charts.models.Entry;
 import jorgereina1986.c4q.nyc.djlagarto.charts.network.ChartsApi;
@@ -32,7 +34,6 @@ public class ChartsFragment extends Fragment implements ChartRvAdapter.ListItemC
     private ChartFragmentBinding binding;
     private ChartRvAdapter adapter;
     private List<Entry> entryList = new ArrayList<>();
-    private PlayerListener playerListener;
 
     @Nullable
     @Override
@@ -49,7 +50,6 @@ public class ChartsFragment extends Fragment implements ChartRvAdapter.ListItemC
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        playerListener = (PlayerListener) getActivity();
         getChartTracks();
     }
 
@@ -86,6 +86,7 @@ public class ChartsFragment extends Fragment implements ChartRvAdapter.ListItemC
         String durationS = entry.getLink().get(1).getDuration().getLabel();
         int duration = Integer.parseInt(durationS);
 
-        playerListener.updatePlayer(title, album, url, duration);
+
+        EventBus.getDefault().post(new ChartsEvent(entry));
     }
 }

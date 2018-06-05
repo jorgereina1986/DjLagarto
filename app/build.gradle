@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "jorgereina1986.c4q.nyc.djlagarto"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -29,17 +29,27 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
-    implementation 'com.squareup.picasso:picasso:2.5.2'
-    implementation 'com.google.android.exoplayer:exoplayer:r1.5.8'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+
+    //Image processing
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
+    //Exo media player
+    implementation 'com.google.android.exoplayer:exoplayer:r1.5.8'
+
+    //Networking
     implementation 'com.google.code.gson:gson:2.6.2'
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    //RxJava
     implementation 'io.reactivex:rxjava:1.1.6'
     implementation 'io.reactivex:rxandroid:1.2.1'
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.jakewharton:butterknife:8.2.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
+
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
 
 
 }

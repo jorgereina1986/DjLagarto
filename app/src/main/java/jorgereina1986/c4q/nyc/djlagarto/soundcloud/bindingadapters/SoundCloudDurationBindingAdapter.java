@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class SoundCloudDurationBindingAdapter {
 
-    @BindingAdapter("bind:duration")
+    @BindingAdapter("duration")
     public static void setDuration(TextView textView, long time) {
             textView.setText(convertTime(time));
     }

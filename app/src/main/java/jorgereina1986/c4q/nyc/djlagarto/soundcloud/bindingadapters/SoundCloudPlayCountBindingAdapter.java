@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class SoundCloudPlayCountBindingAdapter {
 
-    @BindingAdapter("bind:playcount")
+    @BindingAdapter("playcount")
     public static void setPlayCount(TextView textView, long plays) {
         textView.setText(convertPlayCount(plays));
     }

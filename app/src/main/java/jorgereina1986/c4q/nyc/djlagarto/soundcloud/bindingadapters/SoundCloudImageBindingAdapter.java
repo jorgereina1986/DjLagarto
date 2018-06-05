@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso;
 
 public class SoundCloudImageBindingAdapter {
 
-    @BindingAdapter("bind:getArtworkUrl")
+    @BindingAdapter("getArtworkUrl")
     public static void loadImage(ImageView imageView, String url) {
         if (url != "") {
             Picasso.with(imageView.getContext()).load(url).into(imageView);

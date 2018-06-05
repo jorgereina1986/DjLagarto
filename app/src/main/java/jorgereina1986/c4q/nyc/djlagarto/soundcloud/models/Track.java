@@ -11,16 +11,16 @@ public class Track {
     private String kind;
 
     @SerializedName("id")
-    private Integer id;
+    private int id;
 
     @SerializedName("created_at")
     private String createdAt;
 
     @SerializedName("user_id")
-    private Integer userId;
+    private int userId;
 
     @SerializedName("duration")
-    private Integer duration;
+    private int duration;
 
     @SerializedName("commentable")
     private Boolean commentable;
@@ -29,7 +29,7 @@ public class Track {
     private String state;
 
     @SerializedName("original_content_size")
-    private Integer originalContentSize;
+    private int originalContentSize;
 
     @SerializedName("last_modified")
     private String lastModified;
@@ -125,13 +125,13 @@ public class Track {
     private long playbackCount;
 
     @SerializedName("download_count")
-    private Integer downloadCount;
+    private int downloadCount;
 
     @SerializedName("favoritings_count")
-    private Integer favoritingsCount;
+    private int favoritingsCount;
 
     @SerializedName("comment_count")
-    private Integer commentCount;
+    private int commentCount;
 
     @SerializedName("attachments_uri")
     private String attachmentsUri;
@@ -147,11 +147,11 @@ public class Track {
         this.kind = kind;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -163,19 +163,19 @@ public class Track {
         this.createdAt = createdAt;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
-    public Integer getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
@@ -195,11 +195,11 @@ public class Track {
         this.state = state;
     }
 
-    public Integer getOriginalContentSize() {
+    public int getOriginalContentSize() {
         return originalContentSize;
     }
 
-    public void setOriginalContentSize(Integer originalContentSize) {
+    public void setOriginalContentSize(int originalContentSize) {
         this.originalContentSize = originalContentSize;
     }
 
@@ -451,27 +451,27 @@ public class Track {
         this.playbackCount = playbackCount;
     }
 
-    public Integer getDownloadCount() {
+    public int getDownloadCount() {
         return downloadCount;
     }
 
-    public void setDownloadCount(Integer downloadCount) {
+    public void setDownloadCount(int downloadCount) {
         this.downloadCount = downloadCount;
     }
 
-    public Integer getFavoritingsCount() {
+    public int getFavoritingsCount() {
         return favoritingsCount;
     }
 
-    public void setFavoritingsCount(Integer favoritingsCount) {
+    public void setFavoritingsCount(int favoritingsCount) {
         this.favoritingsCount = favoritingsCount;
     }
 
-    public Integer getCommentCount() {
+    public int getCommentCount() {
         return commentCount;
     }
 
-    public void setCommentCount(Integer commentCount) {
+    public void setCommentCount(int commentCount) {
         this.commentCount = commentCount;
     }
 
