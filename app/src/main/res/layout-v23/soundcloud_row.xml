@@ -53,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_play_arrow_black_24dp"
+                android:drawableTint="@color/num_of_play_icon_tint"
                 android:gravity="center"
                 android:textColor="@color/white_text"
                 android:textSize="@dimen/text_size_12sp" />
