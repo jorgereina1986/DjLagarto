@@ -3,7 +3,6 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="track"
             type="jorgereina1986.c4q.nyc.djlagarto.soundcloud.models.Track" />
@@ -50,6 +49,7 @@
 
             <TextView
                 android:id="@+id/num_of_plays_tv"
+                playcount="@{track.playbackCount}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@color/num_of_play_icon_tint"
@@ -57,16 +57,15 @@
                 android:drawableTint="@color/num_of_play_icon_tint"
                 android:gravity="center"
                 android:textColor="@color/white_text"
-                android:textSize="@dimen/text_size_12sp"
-                playcount="@{track.playbackCount}" />
+                android:textSize="@dimen/text_size_12sp" />
 
             <TextView
                 android:id="@+id/track_duration_tv"
+                duration="@{track.duration}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white_text"
-                android:textSize="@dimen/text_size_15sp"
-                duration="@{track.duration}" />
+                android:textSize="@dimen/text_size_15sp" />
         </LinearLayout>
     </LinearLayout>
 </layout>

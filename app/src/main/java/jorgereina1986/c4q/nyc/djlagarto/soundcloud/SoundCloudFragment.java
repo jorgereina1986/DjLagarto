@@ -27,7 +27,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class SoundCloudFragment extends android.support.v4.app.Fragment implements SoundCloudAdapter.TrackSelectedListener {
+public class SoundCloudFragment extends android.support.v4.app.Fragment
+        implements SoundCloudAdapter.TrackSelectedListener {
 
     private static final String TAG = "MainActivity";
     private static final String CLIENT_ID = BuildConfig.CLIENT_ID;

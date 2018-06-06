@@ -24,7 +24,7 @@
             android:id="@+id/album_iv"
             android:layout_width="@dimen/item_row_artwork_55dp"
             android:layout_height="@dimen/item_row_artwork_55dp"
-            bind:artwork="@{entry.artwork.get(2).label}"/>
+            bind:artwork="@{entry.artwork.get(2).label}" />
 
         <LinearLayout
             android:layout_width="match_parent"
